@@ -1,0 +1,383 @@
+@import './variable.module';
+
+.home--container {
+  padding-block: $space-large;
+
+  .hero--container {
+    margin-inline: auto;
+    max-width: 56rem;
+
+    h1 {
+      font-size: $font-size-xlarge;
+    }
+
+    h6 {
+      width: 75%;
+      font-size: $font-size-18;
+    }
+
+    h6,
+    p {
+      margin-inline: auto;
+    }
+
+    h1,
+    p,
+    h6 {
+      text-align: center;
+    }
+
+    .button--container {
+      display: flex;
+      width: 100%;
+
+      justify-content: center;
+      gap: $padding-lg;
+    }
+  }
+
+  .introduction--section__container {
+    background-color: $color-primary-light;
+    width: 100%;
+
+    padding-block: $padding-4xl;
+
+    .introduction--section__contents {
+      @include top-container;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .right--container {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        gap: $padding-xl;
+
+        h2 {
+          font-size: $font-size-36;
+        }
+      }
+
+      a {
+        margin-right: auto;
+      }
+
+      .left--container {
+        width: 45%;
+        display: flex;
+
+        img {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  .features--section__container {
+    margin-top: $padding-5xl;
+    text-align: center;
+
+    // display: flex;
+    // flex-direction: column;
+    // gap: $padding-lg;
+
+    h2 {
+      font-size: $font-size-36;
+    }
+
+    h6 {
+      font-size: $font-size-18;
+    }
+
+    .features--container {
+      @include top-container;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-top: $padding-lg;
+
+      .left--container {
+        width: 45%;
+      }
+
+      .right--container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: $padding-lg;
+
+        .feature--container {
+          display: flex;
+          gap: $padding-lg;
+
+          .feature--left__container {
+            span {
+              background-color: #e6eaff;
+              border-radius: 50%;
+              width: $font-size-36;
+              height: $font-size-36;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              p {
+                color: $color-primary;
+                font-size: $font-size-16;
+              }
+            }
+          }
+
+          .feature--right__container {
+            display: flex;
+            flex-direction: column;
+            gap: $padding-sm;
+
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  .pricing--plans__container {
+    @include top-container;
+    padding-top: $padding-5xl;
+
+    img {
+      width: $font-size-20;
+    }
+
+    h2,
+    h6 {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: $font-size-36;
+    }
+
+    h6 {
+      font-size: $font-size-18;
+      width: 50%;
+      margin-inline: auto;
+    }
+
+    .pricing--plan__container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: $padding-lg;
+
+      .pricing--plan {
+        width: 30%;
+        padding: $padding-xl;
+        border-radius: 12px;
+
+        box-shadow: 0px 0px 10px 0px rgba(71, 59, 240, 0.1);
+      }
+    }
+  }
+
+  .faqs--section__container {
+    @include top-container;
+
+    padding-top: $padding-5xl;
+
+    h2 {
+      font-size: $font-size-36;
+      text-align: center;
+      margin-bottom: $padding-xl;
+    }
+
+    .faqs--container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+
+      row-gap: $padding-lg;
+      column-gap: $padding-6xl;
+
+      .faq--container {
+        display: flex;
+        justify-content: space-between;
+
+        .faq--question__icon {
+          background-color: $color-secondary;
+          border-radius: 50%;
+          width: $font-size-36;
+          height: $font-size-36;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          p {
+            color: $color-text;
+            margin: auto;
+          }
+        }
+
+        .faq--left__container {
+          width: 85%;
+        }
+      }
+    }
+  }
+}
+
+// ************************************** //
+// *****       MEDIA QUERIES        ***** //
+// ************************************** //
+
+// ************************************** //
+// *****     900PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 56.25em) {
+  .home--container {
+    .introduction--section__container {
+      .introduction--section__contents {
+        flex-direction: column;
+
+        .right--container {
+          width: 100%;
+        }
+      }
+    }
+
+    .features--section__container {
+      .features--container {
+        flex-direction: column-reverse;
+
+        .left--container {
+          width: 100%;
+
+          img {
+            margin: auto;
+          }
+        }
+
+        .right--container {
+          width: 100%;
+        }
+      }
+    }
+
+    .pricing--plans__container {
+      .pricing--plan__container {
+        flex-direction: column;
+        gap: $padding-xl;
+
+        .pricing--plan {
+          width: 50%;
+          margin: auto;
+        }
+      }
+    }
+
+    .faqs--section__container {
+      .faqs--container {
+        display: flex;
+        flex-direction: column;
+
+        .faq--container {
+          .faq--left__container {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ************************************** //
+// *****     700PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 43.75em) {
+  .home--container {
+    padding-block: $padding-3xl;
+
+    .hero--container {
+      h1 {
+        font-size: $font-size-36;
+      }
+    }
+
+    .introduction--section__container {
+      .introduction--section__contents {
+        .right--container {
+          h2 {
+            font-size: $font-size-30;
+          }
+        }
+      }
+    }
+
+    .features--section__container {
+      h2 {
+        font-size: $font-size-30;
+      }
+    }
+
+    .pricing--plans__container {
+      h2 {
+        font-size: $font-size-30;
+      }
+
+      h6 {
+        width: 100%;
+      }
+
+      .pricing--plan__container {
+        .pricing--plan {
+          padding: $padding-lg;
+          width: 70%;
+        }
+      }
+    }
+
+    .faqs--section__container {
+      h2 {
+        font-size: $font-size-30;
+      }
+
+      .faqs--container {
+        .faq--container {
+          gap: $padding-md;
+
+          .faq--left__container {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ************************************** //
+// *****     500PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 31.25em) {
+  .home--container {
+    .hero--container {
+      h1 {
+        font-size: $font-size-30;
+      }
+
+      h6 {
+        width: 100%;
+      }
+    }
+
+    .pricing--plans__container {
+      .pricing--plan__container {
+        .pricing--plan {
+          width: 90%;
+        }
+      }
+    }
+  }
+}

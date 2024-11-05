@@ -1,0 +1,66 @@
+$color-primary: #473bf0; // Primary Color
+$color-primary-light: #f4f7fa;
+$color-primary--lighter: #e6eaff;
+
+$color-secondary: #68d585; // Secondary Color
+$color-text: #333333; // Text Color
+
+// ************************************** //
+// *****           DESKTOP          ***** //
+// ************************************** //
+// FONT SIZES
+$font-size-medium: 1.125rem; // 18px
+$font-size-large: 2.25rem; // 36px
+$font-size-xlarge: 3rem; // 48px
+
+$font-size-10: 0.625rem; // 10px
+$font-size-12: 0.75rem; // 12px
+$font-size-14: 0.875rem; // 14px
+$font-size-16: 1rem; // 16px
+$font-size-18: 1.125rem; // 18px
+$font-size-20: 1.25rem; // 20px
+$font-size-24: 1.5rem; // 24px
+$font-size-30: 1.875rem; // 30px
+$font-size-36: 2.25rem; // 36px
+$font-size-44: 2.75rem; // 44px
+$font-size-52: 3.25rem; // 52px
+$font-size-62: 3.875rem; // 62px
+$font-size-74: 4.625rem; // 74px
+$font-size-86: 5.375rem; // 86px
+$font-size-98: 6.125rem; // 98px
+
+// SPACES SIZES
+$space-small: 1.5rem;
+$space-large: 6.75rem;
+
+$padding-xxs: 0.125rem; // 2px
+$padding-xs: 0.25rem; // 4px
+$padding-sm: 0.5rem; // 8px
+$padding-md: 0.75rem; // 12px
+$padding-base: 1rem; // 16px
+$padding-lg: 1.5rem; // 24px
+$padding-xl: 2rem; // 32px
+$padding-xxl: 3rem; // 48px
+$padding-3xl: 4rem; // 64px
+$padding-4xl: 5rem; // 80px
+$padding-5xl: 6rem; // 96px
+$padding-6xl: 8rem; // 128px
+
+// WIDTH SIZES
+$container-width-larger: 75rem;
+$container-width-medium: 70rem;
+$container-width-small: 44em;
+
+// TODO: create a class that has the container styles
+@mixin top-container {
+  margin-inline: auto;
+  max-width: $container-width-medium;
+
+  @media (max-width: 75em) {
+    max-width: 56.25rem;
+  }
+
+  @media (max-width: 56.25em) {
+    max-width: 90%;
+  }
+}
