@@ -11,9 +11,7 @@ import BlueBtn from './BlueBtn';
 import TethSecure from '@/../public/icons/tethsecure.svg';
 import MobileNav from './MobileNav';
 
-type Props = {};
-
-export default function Nav({}: Props) {
+export default function Nav() {
   return (
     <nav>
       <section className={`hidden md:flex ${styles['nav--container']}`}>

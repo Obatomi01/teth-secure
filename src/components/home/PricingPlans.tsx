@@ -8,8 +8,6 @@ import BlueBtn from '../general/BlueBtn';
 import DollarSign from '@/../public/icons/dollar-sign.png';
 import PricingPlan from './PricingPlan';
 
-type Props = {};
-
 export interface PricingPlansType {
   typeOfPricingPlan: string;
   amount: React.ReactNode;
@@ -83,7 +81,7 @@ const pricingPlans: PricingPlansType[] = [
   },
 ];
 
-export default function PricingPlans({}: Props) {
+export default function PricingPlans() {
   return (
     <section className={styles['pricing--plans__container']}>
       <h2 className={`${manropeSemiBold.className}`}>Pricing & Plans</h2>

@@ -10,9 +10,7 @@ import Features from './Features';
 import PricingPlans from './PricingPlans';
 import FAQs from './FAQs';
 
-type Props = {};
-
-export default function HomePage({}: Props) {
+export default function HomePage() {
   return (
     <main className={styles['home--container']}>
       <Hero />

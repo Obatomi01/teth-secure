@@ -4,11 +4,9 @@ import Image from 'next/image';
 import { PricingPlansType } from './PricingPlans';
 
 import styles from '@/styles/home.module.scss';
-import { manropeMedium, manropeBold } from '@/styles/fonts';
+import { manropeMedium } from '@/styles/fonts';
 
 import CheckMark from '@/../public/icons/check-mark.png';
-
-type Props = {};
 
 export default function PricingPlan({
   btnType,

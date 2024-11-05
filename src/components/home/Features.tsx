@@ -8,8 +8,6 @@ import { manropeMedium, manropeSemiBold } from '@/styles/fonts';
 import FeaturesImage from '@/../public/images/unparalled security.png';
 import Feature from './Feature';
 
-type Props = {};
-
 export interface FeatureType {
   featureTitle: string;
   featureContent: string;
@@ -34,7 +32,7 @@ const features: FeatureType[] = [
   },
 ];
 
-export default function Features({}: Props) {
+export default function Features() {
   return (
     <section className={styles['features--section__container']}>
       <h2 className={`${manropeSemiBold.className}`}>Unparalleled Security</h2>

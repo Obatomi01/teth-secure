@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from '@/styles/home.module.scss';
-import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
+import { manropeSemiBold } from '@/styles/fonts';
 import FAQ from './FAQ';
 import Link from 'next/link';
 

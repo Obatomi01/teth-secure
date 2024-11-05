@@ -4,9 +4,7 @@ import BottomFooter from './BottomFooter';
 
 import styles from '@/styles/general.module.scss';
 
-type Props = {};
-
-export default function Footer({}: Props) {
+export default function Footer() {
   return (
     <footer className={styles['footer--section__container']}>
       <TopFooter />

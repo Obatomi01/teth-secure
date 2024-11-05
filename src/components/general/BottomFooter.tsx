@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 
 import styles from '@/styles/general.module.scss';
-import { manropeMedium, manropeBold } from '@/styles/fonts';
+import { manropeMedium } from '@/styles/fonts';
 
 import logo from '@/../public/icons/tethsecure.svg';
 import Facebook from '@/../public/icons/logo-facebook.png';
@@ -11,11 +11,9 @@ import Twitter from '@/../public/icons/logo-twitter.png';
 import LinkedIn from '@/../public/icons/logo-linkedin.png';
 import Instagram from '@/../public/icons/logo-instagram.png';
 
-type Props = {};
-
 interface SocialType {
   socialLink: string;
-  socialLogo: any;
+  socialLogo: StaticImageData;
 }
 
 interface NavLinkType {
@@ -61,7 +59,7 @@ const navLinks: NavLinkType[] = [
   },
 ];
 
-export default function BottomFooter({}: Props) {
+export default function BottomFooter() {
   return (
     <section className={styles['bottom--footer__container']}>
       <div className={styles['bottom--footer__content']}>
@@ -75,8 +73,8 @@ export default function BottomFooter({}: Props) {
 
         <div className={styles['bottom--footer__content--right']}>
           <div className={styles['bottom--footer__content--right--top']}>
-            {navLinks.map((el: NavLinkType) => (
-              <Link href={el.navLink}>
+            {navLinks.map((el: NavLinkType, index: number) => (
+              <Link href={el.navLink} key={index}>
                 <h3
                   className={`text-base ${manropeMedium.className} text-color-primary`}
                 >
@@ -87,8 +85,8 @@ export default function BottomFooter({}: Props) {
           </div>
 
           <div className={styles['bottom--footer__content--right--bottom']}>
-            {socials.map((el: SocialType) => (
-              <Link href={el.socialLink}>
+            {socials.map((el: SocialType, index: number) => (
+              <Link href={el.socialLink} key={index}>
                 <Image src={el.socialLogo} alt='social' />
               </Link>
             ))}

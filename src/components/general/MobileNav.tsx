@@ -5,9 +5,7 @@ import Logo from '@/../public/icons/tethsecure.svg';
 import Menu from '@/../public/icons/menu.png';
 import Close from '@/../public/icons/close.png';
 
-type Props = {};
-
-export default function MobileNav({}: Props) {
+export default function MobileNav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {

@@ -7,9 +7,7 @@ import { manropeMedium, manropeSemiBold } from '@/styles/fonts';
 import BlueBtn from '../general/BlueBtn';
 import SecurityProtocols from '@/../public/images/security protocols.png';
 
-type Props = {};
-
-export default function Introduction({}: Props) {
+export default function Introduction() {
   return (
     <section className={styles['introduction--section__container']}>
       <div className={styles['introduction--section__contents']}>

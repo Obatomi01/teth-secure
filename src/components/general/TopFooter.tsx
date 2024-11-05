@@ -4,9 +4,7 @@ import styles from '@/styles/general.module.scss';
 import { manropeMedium, manropeSemiBold } from '@/styles/fonts';
 import BlueBtn from './BlueBtn';
 
-type Props = {};
-
-export default function TopFooter({}: Props) {
+export default function TopFooter() {
   return (
     <section className={styles['top--footer__container']}>
       <div className={styles['top--footer__contents']}>
