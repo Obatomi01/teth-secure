@@ -52,10 +52,22 @@ export default function SignInForm() {
           type='password'
           {...register('password', {
             required: 'Password is required',
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#./]).{8,}$/,
-              message:
-                'Password must include uppercase, lowercase, number, special character, and be at least 8 characters long',
+            // pattern: {
+            //   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#./]).{8,}$/,
+            //   message:
+            //     'Password must include uppercase, lowercase, number, special character, and be at least 8 characters long',
+            // },
+            validate: {
+              hasUpperCase: (value) =>
+                /[A-Z]/.test(value) || 'Must include an uppercase letter',
+              hasLowerCase: (value) =>
+                /[a-z]/.test(value) || 'Must include a lowercase letter',
+              hasNumber: (value) => /\d/.test(value) || 'Must include a number',
+              hasSpecialChar: (value) =>
+                /[@%#./]/.test(value) ||
+                'Must include a special character (@%#./)',
+              minLength: (value) =>
+                value.length >= 8 || 'Must be at least 8 characters long',
             },
           })}
           placeholder='Password'
