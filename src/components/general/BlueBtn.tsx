@@ -1,26 +1,47 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { manropeMedium } from '@/styles/fonts';
+import { manropeBold } from '@/styles/fonts';
 import styles from '@/styles/general.module.scss';
 
 type Props = {
-  linkTo: string;
+  linkTo?: string;
   hasBlueBackground: boolean;
   btnText: string;
+  isNotLink?: boolean;
+  btnType?: 'button' | 'submit';
+  additionalStyles?: string;
 };
 
-export default function BlueBtn({ linkTo, hasBlueBackground, btnText }: Props) {
-  return (
+export default function BlueBtn({
+  linkTo,
+  hasBlueBackground,
+  btnText,
+  isNotLink,
+  btnType,
+  additionalStyles,
+}: Props) {
+  return !isNotLink ? (
     <Link
-      href={linkTo}
-      className={
+      href={linkTo || '/'}
+      className={`${additionalStyles} ${
         hasBlueBackground
           ? styles['blue--btn__container']
           : styles['blue--border--btn']
-      }
+      }`}
     >
-      <p className={manropeMedium.className}>{btnText}</p>
+      <p className={manropeBold.className}>{btnText}</p>
     </Link>
+  ) : (
+    <button
+      className={`${additionalStyles} ${
+        hasBlueBackground
+          ? styles['blue--btn__container']
+          : styles['blue--border--btn']
+      }`}
+      type={btnType}
+    >
+      <p className={manropeBold.className}>{btnText}</p>
+    </button>
   );
 }

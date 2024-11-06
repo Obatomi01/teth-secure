@@ -15,14 +15,24 @@ export default function Nav() {
   return (
     <nav>
       <section className={`hidden md:flex ${styles['nav--container']}`}>
-        <div className={styles['right--container']}>
-          <Image alt='TethSecure' src={TethSecure} />
-        </div>
+        <Link href={'/'}>
+          <div className={styles['right--container']}>
+            <Image alt='TethSecure' src={TethSecure} />
+          </div>
+        </Link>
 
         <div className={styles['left--container']}>
-          <BlueBtn linkTo='' hasBlueBackground btnText='Get Started for free' />
-          <BlueBtn linkTo='' hasBlueBackground={false} btnText='Contact us' />
-          <Link href={''}>
+          <BlueBtn
+            linkTo='/sign-up'
+            hasBlueBackground
+            btnText='Get Started for free'
+          />
+          <BlueBtn
+            linkTo='/contact-us'
+            hasBlueBackground={false}
+            btnText='Contact us'
+          />
+          <Link href={'/sign-in'}>
             <p className={`${manropeMedium.className} text-color-primary`}>
               Sign In
             </p>

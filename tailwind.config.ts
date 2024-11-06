@@ -13,6 +13,7 @@ const config: Config = {
         foreground: 'var(--foreground)',
         'color-primary': '#473bf0',
         'p-text-color': '#161C2D',
+        'bold-text-color': '#4F4F4F',
       },
       screens: {
         md: '700px',

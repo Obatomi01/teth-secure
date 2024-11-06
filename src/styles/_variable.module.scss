@@ -64,3 +64,13 @@ $container-width-small: 44em;
     max-width: 90%;
   }
 }
+
+@mixin sign--in__form--container {
+  @media (max-width: 75em) {
+    max-width: 56.25rem;
+  }
+
+  @media (max-width: 56.25em) {
+    max-width: 90%;
+  }
+}

@@ -1,12 +1,13 @@
+import ContactUsPage from '@/components/contact us/ContactUsPage';
 import BottomFooter from '@/components/general/BottomFooter';
 import Nav from '@/components/general/Nav';
-import HomePage from '@/components/home/HomePage';
+import React from 'react';
 
-export default function Home() {
+export default function page() {
   return (
     <>
       <Nav />
-      <HomePage />
+      <ContactUsPage />
       <BottomFooter />
     </>
   );

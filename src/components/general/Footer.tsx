@@ -8,7 +8,6 @@ export default function Footer() {
   return (
     <footer className={styles['footer--section__container']}>
       <TopFooter />
-      <BottomFooter />
     </footer>
   );
 }

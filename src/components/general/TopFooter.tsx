@@ -20,7 +20,11 @@ export default function TopFooter() {
 
         <div className={styles['top--footer--right__container']}>
           <BlueBtn linkTo='/' hasBlueBackground btnText='Get started' />
-          <BlueBtn linkTo='/' hasBlueBackground={false} btnText='Contact us' />
+          <BlueBtn
+            linkTo='/contact-us'
+            hasBlueBackground={false}
+            btnText='Contact us'
+          />
         </div>
       </div>
     </section>

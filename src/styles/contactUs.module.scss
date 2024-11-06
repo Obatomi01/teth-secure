@@ -1,0 +1,97 @@
+@import './variable.module';
+
+.contact--form__container {
+  max-width: $container-width-small;
+  margin: auto;
+  padding-block: $padding-5xl;
+
+  position: relative;
+
+  h1 {
+    font-size: $font-size-36;
+  }
+
+  .pop--up {
+    background-color: #f4f7fa;
+    padding: $padding-lg;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+
+    /* Centering the pop-up */
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    transition: all 0.5s ease; /* Shorter transition for better UX */
+    z-index: 2;
+
+    /* Starting styles */
+    opacity: 0;
+    transform: translate(-50%, -60%); /* Move slightly off-center initially */
+  }
+
+  .open {
+    transform: translate(-50%, -50%); /* Centered */
+    opacity: 1;
+  }
+
+  .hide {
+    transform: translate(-50%, -60%); /* Moves it offscreen */
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .contact--form {
+    .contact--form__top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+
+      column-gap: $padding-lg;
+      justify-content: space-between;
+    }
+
+    textarea {
+      width: 100%;
+
+      border: 2px solid #eae9e99c;
+      border-radius: 8px;
+      padding: $padding-sm;
+
+      outline: none;
+    }
+  }
+}
+
+// ************************************** //
+// *****       MEDIA QUERIES        ***** //
+// ************************************** //
+// ************************************** //
+// *****     700PX BREAKPOINT       ***** //
+// ************************************** //
+@media (max-width: 43.75em) {
+  .contact--form__container {
+    padding-block: $padding-xxl;
+
+    h1 {
+      font-size: $font-size-30;
+    }
+
+    .contact--form {
+      .contact--form__top {
+        display: flex;
+        flex-direction: column;
+
+        width: 90%;
+        margin: auto;
+      }
+
+      textarea {
+        width: 90%;
+        margin: auto;
+      }
+    }
+  }
+}

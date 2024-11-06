@@ -1,7 +1,7 @@
 @import './variable.module';
 
 .home--container {
-  padding-block: $space-large;
+  padding-top: $space-large;
 
   .hero--container {
     margin-inline: auto;
@@ -298,7 +298,7 @@
 // ************************************** //
 @media (max-width: 43.75em) {
   .home--container {
-    padding-block: $padding-3xl;
+    padding-top: $padding-3xl;
 
     .hero--container {
       h1 {

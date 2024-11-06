@@ -9,6 +9,7 @@ import Introduction from './Introduction';
 import Features from './Features';
 import PricingPlans from './PricingPlans';
 import FAQs from './FAQs';
+import Footer from '../general/Footer';
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Features />
       <PricingPlans />
       <FAQs />
+      <Footer />
     </main>
   );
 }

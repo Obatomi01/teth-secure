@@ -40,7 +40,7 @@ const socials: SocialType[] = [
   },
 ];
 
-const navLinks: NavLinkType[] = [
+export const navLinks: NavLinkType[] = [
   {
     navLink: '/',
     navText: 'Company',
@@ -61,35 +61,40 @@ const navLinks: NavLinkType[] = [
 
 export default function BottomFooter() {
   return (
-    <section className={styles['bottom--footer__container']}>
-      <div className={styles['bottom--footer__content']}>
-        <div className={styles['bottom--footer__content--left']}>
-          <Image src={logo} alt='logo' />
-          <p className={`w-full text-base ${manropeMedium.className} md:w-4/5`}>
-            We offer a comprehensive suite of multi-factor authentication (MFA)
-            solutions designed to safeguard your valuable data and systems.
-          </p>
-        </div>
-
-        <div className={styles['bottom--footer__content--right']}>
-          <div className={styles['bottom--footer__content--right--top']}>
-            {navLinks.map((el: NavLinkType, index: number) => (
-              <Link href={el.navLink} key={index}>
-                <h3
-                  className={`text-base ${manropeMedium.className} text-color-primary`}
-                >
-                  {el.navText}
-                </h3>
-              </Link>
-            ))}
+    <section className={styles['footer--section__container']}>
+      <div className={styles['bottom--footer__container']}>
+        <div className={styles['bottom--footer__content']}>
+          <div className={styles['bottom--footer__content--left']}>
+            <Image src={logo} alt='logo' />
+            <p
+              className={`w-full text-base ${manropeMedium.className} md:w-4/5`}
+            >
+              We offer a comprehensive suite of multi-factor authentication
+              (MFA) solutions designed to safeguard your valuable data and
+              systems.
+            </p>
           </div>
 
-          <div className={styles['bottom--footer__content--right--bottom']}>
-            {socials.map((el: SocialType, index: number) => (
-              <Link href={el.socialLink} key={index}>
-                <Image src={el.socialLogo} alt='social' />
-              </Link>
-            ))}
+          <div className={styles['bottom--footer__content--right']}>
+            <div className={styles['bottom--footer__content--right--top']}>
+              {navLinks.map((el: NavLinkType, index: number) => (
+                <Link href={el.navLink} key={index}>
+                  <p
+                    className={`text-base ${manropeMedium.className} text-color-primary`}
+                  >
+                    {el.navText}
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+            <div className={styles['bottom--footer__content--right--bottom']}>
+              {socials.map((el: SocialType, index: number) => (
+                <Link href={el.socialLink} key={index}>
+                  <Image src={el.socialLogo} alt='social' />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

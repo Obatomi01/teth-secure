@@ -24,6 +24,7 @@
 
   width: 90%;
   margin-inline: auto;
+  z-index: 1;
 
   .menu--btn__container {
     background-color: $color-primary--lighter;
@@ -60,8 +61,8 @@
     cursor: pointer;
 
     img {
-      width: $font-size-36;
-      height: $font-size-36;
+      width: $font-size-24;
+      height: $font-size-24;
 
       filter: invert(17%) sepia(92%) saturate(4076%) hue-rotate(245deg)
         brightness(97%) contrast(94%);
@@ -126,11 +127,26 @@
   //   TODO: Hover state of button
 }
 
+.form--input__container {
+  margin-bottom: $padding-lg;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    border: 2px solid #eae9e99c;
+    border-radius: 8px;
+    padding: $padding-sm;
+
+    outline: none;
+  }
+}
+
 .footer--section__container {
   .top--footer__container {
     background-color: #f8f8f8;
 
     padding-block: $padding-5xl;
+    margin-top: $padding-5xl;
 
     .top--footer__contents {
       @include top-container;
@@ -266,5 +282,14 @@
         }
       }
     }
+  }
+}
+
+// ************************************** //
+// *****     700PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 43.75em) {
+  .form--input__container {
+    margin-bottom: $padding-md;
   }
 }

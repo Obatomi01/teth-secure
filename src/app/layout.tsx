@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Nav from '@/components/general/Nav';
-import Footer from '@/components/general/Footer';
+
+import BottomFooter from '@/components/general/BottomFooter';
 
 export const metadata: Metadata = {
   title: 'Teth secure',
@@ -16,11 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
-        <Nav />
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
