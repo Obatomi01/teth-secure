@@ -78,7 +78,7 @@ export default function MobileNav() {
             <BlueBtn
               btnText='Sign in'
               hasBlueBackground={false}
-              linkTo='/'
+              linkTo='/sign-in'
               additionalStyles='w-2/4'
             />
           </div>
@@ -86,7 +86,7 @@ export default function MobileNav() {
             <BlueBtn
               btnText='Get Started'
               hasBlueBackground
-              linkTo='/'
+              linkTo='/get-started'
               additionalStyles='w-2/4'
             />
           </div>
