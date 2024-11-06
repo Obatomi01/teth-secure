@@ -3,9 +3,7 @@
 import React from 'react';
 import ContactForm from './ContactForm';
 
-type Props = {};
-
-export default function ContactUsPage({}: Props) {
+export default function ContactUsPage() {
   return (
     <main>
       <ContactForm />

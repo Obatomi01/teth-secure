@@ -91,7 +91,7 @@ const ContactForm = () => {
             pattern: { value: /^\d+$/, message: 'Only numbers are allowed' },
           })}
           placeholder='Phone Number'
-          onInput={(e: any) => {
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
             e.target.value = e.target.value.replace(/\D/g, '');
           }}
         />

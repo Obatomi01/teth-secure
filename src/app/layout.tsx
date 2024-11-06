@@ -1,8 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Nav from '@/components/general/Nav';
-
-import BottomFooter from '@/components/general/BottomFooter';
 
 export const metadata: Metadata = {
   title: 'Teth secure',

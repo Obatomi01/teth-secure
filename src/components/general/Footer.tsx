@@ -1,6 +1,5 @@
 import React from 'react';
 import TopFooter from './TopFooter';
-import BottomFooter from './BottomFooter';
 
 import styles from '@/styles/general.module.scss';
 
