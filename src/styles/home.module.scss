@@ -1,19 +1,19 @@
-@import './variable.module';
+@use './variable.module' as vars;
 
 .home--container {
-  padding-top: $space-large;
+  padding-top: vars.$space-large;
 
   .hero--container {
     margin-inline: auto;
     max-width: 56rem;
 
     h1 {
-      font-size: $font-size-xlarge;
+      font-size: vars.$font-size-xlarge;
     }
 
     h6 {
       width: 75%;
-      font-size: $font-size-18;
+      font-size: vars.$font-size-18;
     }
 
     h6,
@@ -32,31 +32,31 @@
       width: 100%;
 
       justify-content: center;
-      gap: $padding-lg;
+      gap: vars.$padding-lg;
     }
   }
 
   .introduction--section__container {
-    background-color: $color-primary-light;
     width: 100%;
 
-    padding-block: $padding-4xl;
+    background-color: vars.$color-primary-light;
+    padding-block: vars.$padding-4xl;
 
     .introduction--section__contents {
-      @include top-container;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include vars.top-container;
 
       .right--container {
         display: flex;
         flex-direction: column;
         width: 50%;
-        gap: $padding-xl;
+        gap: vars.$padding-xl;
 
         h2 {
-          font-size: $font-size-36;
+          font-size: vars.$font-size-36;
         }
       }
 
@@ -76,30 +76,29 @@
   }
 
   .features--section__container {
-    margin-top: $padding-5xl;
+    margin-top: vars.$padding-5xl;
     text-align: center;
 
     // display: flex;
     // flex-direction: column;
-    // gap: $padding-lg;
+    // gap: vars.$padding-lg;
 
     h2 {
-      font-size: $font-size-36;
+      font-size: vars.$font-size-36;
     }
 
     h6 {
-      font-size: $font-size-18;
+      font-size: vars.$font-size-18;
     }
 
     .features--container {
-      @include top-container;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
 
-      margin-top: $padding-lg;
+      margin-top: vars.$padding-lg;
 
+      @include vars.top-container;
       .left--container {
         width: 45%;
       }
@@ -108,26 +107,26 @@
         width: 50%;
         display: flex;
         flex-direction: column;
-        gap: $padding-lg;
+        gap: vars.$padding-lg;
 
         .feature--container {
           display: flex;
-          gap: $padding-lg;
+          gap: vars.$padding-lg;
 
           .feature--left__container {
             span {
               background-color: #e6eaff;
               border-radius: 50%;
-              width: $font-size-36;
-              height: $font-size-36;
+              width: vars.$font-size-36;
+              height: vars.$font-size-36;
 
               display: flex;
               align-items: center;
               justify-content: center;
 
               p {
-                color: $color-primary;
-                font-size: $font-size-16;
+                color: vars.$color-primary;
+                font-size: vars.$font-size-16;
               }
             }
           }
@@ -135,7 +134,7 @@
           .feature--right__container {
             display: flex;
             flex-direction: column;
-            gap: $padding-sm;
+            gap: vars.$padding-sm;
 
             text-align: left;
           }
@@ -145,11 +144,11 @@
   }
 
   .pricing--plans__container {
-    @include top-container;
-    padding-top: $padding-5xl;
+    padding-top: vars.$padding-5xl;
 
+    @include vars.top-container;
     img {
-      width: $font-size-20;
+      width: vars.$font-size-20;
     }
 
     h2,
@@ -158,11 +157,11 @@
     }
 
     h2 {
-      font-size: $font-size-36;
+      font-size: vars.$font-size-36;
     }
 
     h6 {
-      font-size: $font-size-18;
+      font-size: vars.$font-size-18;
       width: 50%;
       margin-inline: auto;
     }
@@ -170,11 +169,11 @@
     .pricing--plan__container {
       display: flex;
       justify-content: space-between;
-      margin-top: $padding-lg;
+      margin-top: vars.$padding-lg;
 
       .pricing--plan {
         width: 30%;
-        padding: $padding-xl;
+        padding: vars.$padding-xl;
         border-radius: 12px;
 
         box-shadow: 0px 0px 10px 0px rgba(71, 59, 240, 0.1);
@@ -183,14 +182,13 @@
   }
 
   .faqs--section__container {
-    @include top-container;
+    padding-top: vars.$padding-5xl;
 
-    padding-top: $padding-5xl;
-
+    @include vars.top-container;
     h2 {
-      font-size: $font-size-36;
+      font-size: vars.$font-size-36;
       text-align: center;
-      margin-bottom: $padding-xl;
+      margin-bottom: vars.$padding-xl;
     }
 
     .faqs--container {
@@ -198,25 +196,25 @@
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
 
-      row-gap: $padding-lg;
-      column-gap: $padding-6xl;
+      row-gap: vars.$padding-lg;
+      column-gap: vars.$padding-6xl;
 
       .faq--container {
         display: flex;
         justify-content: space-between;
 
         .faq--question__icon {
-          background-color: $color-secondary;
+          background-color: vars.$color-secondary;
           border-radius: 50%;
-          width: $font-size-36;
-          height: $font-size-36;
+          width: vars.$font-size-36;
+          height: vars.$font-size-36;
 
           display: flex;
           align-items: center;
           justify-content: center;
 
           p {
-            color: $color-text;
+            color: vars.$color-text;
             margin: auto;
           }
         }
@@ -269,7 +267,7 @@
     .pricing--plans__container {
       .pricing--plan__container {
         flex-direction: column;
-        gap: $padding-xl;
+        gap: vars.$padding-xl;
 
         .pricing--plan {
           width: 50%;
@@ -298,11 +296,11 @@
 // ************************************** //
 @media (max-width: 43.75em) {
   .home--container {
-    padding-top: $padding-3xl;
+    padding-top: vars.$padding-3xl;
 
     .hero--container {
       h1 {
-        font-size: $font-size-36;
+        font-size: vars.$font-size-36;
       }
     }
 
@@ -310,7 +308,7 @@
       .introduction--section__contents {
         .right--container {
           h2 {
-            font-size: $font-size-30;
+            font-size: vars.$font-size-30;
           }
         }
       }
@@ -318,13 +316,13 @@
 
     .features--section__container {
       h2 {
-        font-size: $font-size-30;
+        font-size: vars.$font-size-30;
       }
     }
 
     .pricing--plans__container {
       h2 {
-        font-size: $font-size-30;
+        font-size: vars.$font-size-30;
       }
 
       h6 {
@@ -333,7 +331,7 @@
 
       .pricing--plan__container {
         .pricing--plan {
-          padding: $padding-lg;
+          padding: vars.$padding-lg;
           width: 70%;
         }
       }
@@ -341,12 +339,12 @@
 
     .faqs--section__container {
       h2 {
-        font-size: $font-size-30;
+        font-size: vars.$font-size-30;
       }
 
       .faqs--container {
         .faq--container {
-          gap: $padding-md;
+          gap: vars.$padding-md;
 
           .faq--left__container {
             width: 100%;
@@ -364,7 +362,7 @@
   .home--container {
     .hero--container {
       h1 {
-        font-size: $font-size-30;
+        font-size: vars.$font-size-30;
       }
 
       h6 {

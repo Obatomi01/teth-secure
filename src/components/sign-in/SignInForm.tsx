@@ -25,6 +25,7 @@ export default function SignInForm() {
 
   const onSubmit = (data: SignInFormValues) => {
     console.log(data);
+
     // Handle form submission logic here, e.g., send data to an API
   };
 

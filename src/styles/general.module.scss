@@ -149,12 +149,13 @@
     margin-top: $padding-5xl;
 
     .top--footer__contents {
-      @include top-container;
       margin: auto;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include top-container;
     }
 
     .top--footer--left__container {
@@ -172,13 +173,12 @@
     padding-block: $padding-5xl;
 
     .bottom--footer__content {
-      @include top-container;
       margin: auto;
 
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-
+      @include top-container;
       .bottom--footer__content--left {
         width: 40%;
 

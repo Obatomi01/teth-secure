@@ -32,6 +32,7 @@ const ContactForm = () => {
   const [showPopUp, setShowPopUp] = useState(false);
 
   const onSubmit = (data: FormValues) => {
+    console.log('button clicked');
     setShowPopUp(true);
 
     setTimeout(() => {
