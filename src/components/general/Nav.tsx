@@ -23,7 +23,7 @@ export default function Nav() {
 
         <div className={styles['left--container']}>
           <BlueBtn
-            linkTo='/sign-up'
+            linkTo='/get-started'
             hasBlueBackground
             btnText='Get Started for free'
           />

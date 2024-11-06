@@ -22,7 +22,11 @@ export default function Hero() {
         authentication solutions.
       </h6>
       <div className={`${styles['button--container']} mb-6`}>
-        <BlueBtn linkTo='' hasBlueBackground btnText='Get Started for free' />
+        <BlueBtn
+          linkTo='/get-started'
+          hasBlueBackground
+          btnText='Get Started for free'
+        />
         <BlueBtn
           linkTo='/contact-us'
           hasBlueBackground={false}

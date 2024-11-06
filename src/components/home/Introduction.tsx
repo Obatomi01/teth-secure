@@ -22,7 +22,11 @@ export default function Introduction() {
             solutions designed to safeguard your valuable data and systems.
           </p>
 
-          <BlueBtn hasBlueBackground linkTo='' btnText='Get started for free' />
+          <BlueBtn
+            hasBlueBackground
+            linkTo='/get-started'
+            btnText='Get started for free'
+          />
         </div>
         <div className={styles['left--container']}>
           <Image src={SecurityProtocols} alt='Advanced Security' />
