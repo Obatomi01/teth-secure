@@ -1,8 +1,8 @@
-@import './variable.module';
+@use './variable.module' as vars;
 
 .nav--container {
-  margin-top: $space-small;
-  max-width: $container-width-larger;
+  margin-top: vars.$space-small;
+  max-width: vars.$container-width-larger;
   margin-inline: auto;
 
   justify-content: space-between;
@@ -12,7 +12,7 @@
   }
   .left--container {
     display: flex;
-    gap: $padding-xl;
+    gap: vars.$padding-xl;
     align-items: center;
   }
 }
@@ -27,9 +27,9 @@
   z-index: 1;
 
   .menu--btn__container {
-    background-color: $color-primary--lighter;
-    width: $font-size-36;
-    height: $font-size-36;
+    background-color: vars.$color-primary--lighter;
+    width: vars.$font-size-36;
+    height: vars.$font-size-36;
 
     border-radius: 50%;
     display: flex;
@@ -37,8 +37,8 @@
     justify-content: center;
 
     img {
-      width: $font-size-20;
-      height: $font-size-20;
+      width: vars.$font-size-20;
+      height: vars.$font-size-20;
 
       filter: invert(17%) sepia(92%) saturate(4076%) hue-rotate(245deg)
         brightness(97%) contrast(94%);
@@ -61,8 +61,8 @@
     cursor: pointer;
 
     img {
-      width: $font-size-24;
-      height: $font-size-24;
+      width: vars.$font-size-24;
+      height: vars.$font-size-24;
 
       filter: invert(17%) sepia(92%) saturate(4076%) hue-rotate(245deg)
         brightness(97%) contrast(94%);
@@ -75,7 +75,7 @@
     right: 0;
     width: 100%;
     height: 100%;
-    padding-inline: $padding-lg;
+    padding-inline: vars.$padding-lg;
     background-color: white;
     // box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transform: translateX(100%); // Hide menu offscreen initially
@@ -93,16 +93,16 @@
 }
 
 .blue--border--btn {
-  border: 1px solid $color-primary;
+  border: 1px solid vars.$color-primary;
 
   p {
-    color: $color-primary;
+    color: vars.$color-primary;
   }
   //   TODO: Hover state of button
 }
 
 .blue--btn__container {
-  background-color: $color-primary;
+  background-color: vars.$color-primary;
 
   p {
     color: #fff;
@@ -112,15 +112,15 @@
 
 .blue--btn__container,
 .blue--border--btn {
-  padding-block: $padding-sm;
-  padding-inline: $padding-lg;
+  padding-block: vars.$padding-sm;
+  padding-inline: vars.$padding-lg;
 
   border-radius: 8px;
 
   display: flex;
 
   p {
-    font-size: $font-size-16;
+    font-size: vars.$font-size-16;
     margin: auto;
   }
 
@@ -128,14 +128,14 @@
 }
 
 .form--input__container {
-  margin-bottom: $padding-lg;
+  margin-bottom: vars.$padding-lg;
   display: flex;
   flex-direction: column;
 
   input {
     border: 2px solid #eae9e99c;
     border-radius: 8px;
-    padding: $padding-sm;
+    padding: vars.$padding-sm;
 
     outline: none;
   }
@@ -145,16 +145,17 @@
   .top--footer__container {
     background-color: #f8f8f8;
 
-    padding-block: $padding-5xl;
-    margin-top: $padding-5xl;
+    padding-block: vars.$padding-5xl;
+    margin-top: vars.$padding-5xl;
 
     .top--footer__contents {
-      @include top-container;
       margin: auto;
 
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include vars.top-container;
     }
 
     .top--footer--left__container {
@@ -163,27 +164,26 @@
 
     .top--footer--right__container {
       display: flex;
-      gap: $padding-lg;
+      gap: vars.$padding-lg;
     }
   }
 
   .bottom--footer__container {
     background-color: #f4f7fa;
-    padding-block: $padding-5xl;
+    padding-block: vars.$padding-5xl;
 
     .bottom--footer__content {
-      @include top-container;
       margin: auto;
 
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-
+      @include vars.top-container;
       .bottom--footer__content--left {
         width: 40%;
 
         img {
-          margin-bottom: $padding-xl;
+          margin-bottom: vars.$padding-xl;
         }
       }
 
@@ -193,17 +193,29 @@
 
         .bottom--footer__content--right--top {
           display: flex;
-          gap: $padding-3xl;
-          margin-bottom: $padding-xl;
+          gap: vars.$padding-3xl;
+          margin-bottom: vars.$padding-xl;
         }
 
         .bottom--footer__content--right--bottom {
           display: flex;
-          gap: $padding-lg;
+          gap: vars.$padding-lg;
           margin-left: auto;
         }
       }
     }
+  }
+}
+
+.ready--to__join {
+  width: 45%;
+
+  h2 {
+    font-size: vars.$font-size-36;
+  }
+
+  p {
+    font-size: vars.$font-size-18;
   }
 }
 
@@ -218,6 +230,10 @@
 @media (max-width: 75em) {
   .nav--container {
     max-width: 62.5rem;
+  }
+
+  .ready--to__join {
+    width: 40%;
   }
 }
 // ************************************** //
@@ -242,7 +258,7 @@
     .top--footer__container {
       .top--footer__contents {
         flex-direction: column;
-        gap: $padding-lg;
+        gap: vars.$padding-lg;
 
         .top--footer--left__container {
           width: 100%;
@@ -250,7 +266,7 @@
 
         .top--footer--right__container {
           width: 100%;
-          gap: $padding-lg;
+          gap: vars.$padding-lg;
         }
       }
     }
@@ -262,25 +278,34 @@
         .bottom--footer__content--left {
           width: 100%;
 
-          margin-bottom: $padding-xl;
+          margin-bottom: vars.$padding-xl;
 
           img {
-            margin-bottom: $padding-base;
+            margin-bottom: vars.$padding-base;
           }
         }
 
         .bottom--footer__content--right {
           .bottom--footer__content--right--top {
             flex-direction: column;
-            gap: $padding-base;
+            gap: vars.$padding-base;
           }
 
           //   .bottom--footer__content--right--bottom {
           //     flex-direction: column;
-          //     gap: $padding-lg;
+          //     gap: vars.$padding-lg;
           //   }
         }
       }
+    }
+  }
+
+  .ready--to__join {
+    width: 100%;
+    text-align: center;
+
+    p {
+      font-size: vars.$font-size-16;
     }
   }
 }
@@ -290,6 +315,12 @@
 // ************************************** //
 @media (max-width: 43.75em) {
   .form--input__container {
-    margin-bottom: $padding-md;
+    margin-bottom: vars.$padding-md;
+  }
+
+  .ready--to__join {
+    h2 {
+      font-size: vars.$font-size-30;
+    }
   }
 }

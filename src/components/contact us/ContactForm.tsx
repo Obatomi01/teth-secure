@@ -32,6 +32,7 @@ const ContactForm = () => {
   const [showPopUp, setShowPopUp] = useState(false);
 
   const onSubmit = (data: FormValues) => {
+    console.log('button clicked');
     setShowPopUp(true);
 
     setTimeout(() => {
@@ -94,6 +95,7 @@ const ContactForm = () => {
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
             e.target.value = e.target.value.replace(/\D/g, '');
           }}
+          inputMode='numeric'
         />
       ),
       error: errors.phoneNumber?.message,
