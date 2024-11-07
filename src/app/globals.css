@@ -29,6 +29,10 @@ body {
   overflow-x: hidden;
 }
 
+p {
+  color: #161c2d;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

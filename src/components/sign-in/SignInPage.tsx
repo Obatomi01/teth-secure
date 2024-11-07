@@ -18,7 +18,9 @@ export default function SignInPage({ children }: Props) {
         <Link href={'/'}>
           <Image src={Logo} alt='Logo' />
         </Link>
-        <div className='flex justify-between content-center h-5/6'>
+        <div
+          className={`flex justify-between content-center ${styles['sign--in__form--container']}`}
+        >
           {children}
         </div>
       </div>

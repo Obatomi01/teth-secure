@@ -16,7 +16,7 @@ export default function SignInFormInput({
   return (
     <div className={styles['form--input__container']}>
       <label
-        htmlFor='email'
+        htmlFor={label}
         className={`${manropeBold.className} text-bold-text-color text-base`}
       >
         {label}

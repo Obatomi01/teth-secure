@@ -1,18 +1,22 @@
-@import './variable.module';
+@use './variable.module' as vars;
 
 .sign--in__page--container {
-  overflow-y: hidden;
   background-color: #fff;
 
   height: 100vh;
-  padding-block: $padding-xxl;
+  padding-block: vars.$padding-xxl;
+  overflow-y: hidden;
 
   .sign--in__container {
-    max-width: $container-width-larger;
+    max-width: vars.$container-width-larger;
     margin: auto;
     height: 100%;
 
-    @include sign--in__form--container;
+    @include vars.sign--in__form--container;
+
+    .sign--in__form--container {
+      height: 95%;
+    }
   }
 }
 
@@ -25,10 +29,34 @@
   border-width: 2px;
   box-shadow: 0px 0px 10px 0px rgba(71, 59, 240, 0.1);
 
-  padding: $padding-xl;
+  padding: vars.$padding-xl;
 
   h2 {
-    font-size: $font-size-30;
+    font-size: vars.$font-size-30;
+  }
+}
+
+.sign--up__container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.verify--email__otp--container {
+  justify-content: space-between;
+
+  .verify--email__otp--input {
+    width: 15% !important;
+    height: vars.$font-size-62;
+
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 1px solid rgba(40, 8, 180, 0.3);
+    outline: none;
   }
 }
 
@@ -36,15 +64,33 @@
 // *****       MEDIA QUERIES        ***** //
 // ************************************** //
 // ************************************** //
+// *****     1200PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 75em) {
+  .sign--in__form {
+    width: 55%;
+  }
+}
+
+// ************************************** //
 // *****     900PX BREAKPOINT      ***** //
 // ************************************** //
 @media (max-width: 56.25em) {
+  .sign--in__page--container {
+    height: max-content;
+  }
+
   .sign--in__form {
     width: 60%;
 
     h2 {
-      font-size: $font-size-24;
+      font-size: vars.$font-size-24;
     }
+  }
+
+  .sign--up__container {
+    flex-direction: column;
+    gap: vars.$padding-xl;
   }
 }
 
@@ -53,7 +99,11 @@
 // ************************************** //
 @media (max-width: 43.75em) {
   .sign--in__form {
-    width: 80%;
+    width: 90%;
+  }
+
+  .sign--up__container {
+    gap: vars.$padding-md;
   }
 }
 
@@ -62,6 +112,8 @@
 // ************************************** //
 @media (max-width: 31.25em) {
   .sign--in__form {
-    width: 95%;
+    width: 100%;
+
+    padding-inline: vars.$padding-md;
   }
 }

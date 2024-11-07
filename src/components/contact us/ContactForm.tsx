@@ -95,6 +95,7 @@ const ContactForm = () => {
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
             e.target.value = e.target.value.replace(/\D/g, '');
           }}
+          inputMode='numeric'
         />
       ),
       error: errors.phoneNumber?.message,
