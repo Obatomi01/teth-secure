@@ -15,7 +15,10 @@ import SignInCard from '../general/SignInCard';
 
 import { signInHandler } from '@/app/action';
 
-type SignInFormValues = {
+/**
+ * Represents the values for the sign-in form.
+ */
+export type SignInFormValues = {
   email: string;
   password: string;
 };
@@ -60,11 +63,6 @@ export default function SignInForm() {
           type='password'
           {...register('password', {
             required: 'Password is required',
-            // pattern: {
-            //   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@%#./]).{8,}$/,
-            //   message:
-            //     'Password must include uppercase, lowercase, number, special character, and be at least 8 characters long',
-            // },
             validate: {
               hasUpperCase: (value) =>
                 /[A-Z]/.test(value) || 'Must include an uppercase letter',
@@ -83,6 +81,7 @@ export default function SignInForm() {
       ),
       error: errors.password?.message,
       label: 'Password',
+      isAPasswordField: true,
     },
   ];
 

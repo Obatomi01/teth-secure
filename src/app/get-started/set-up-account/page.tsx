@@ -1,7 +1,7 @@
 import SignInCard from '@/components/general/SignInCard';
 import SignUpFormContainer from '@/components/general/SignUpFormContainer';
 import SignInPage from '@/components/sign-in/SignInPage';
-import VerifyEmail from '@/components/sign-in/VerifyEmail';
+import PersonalDetailsForm from '@/components/sign-up/PersonalDetailsForm';
 import React from 'react';
 
 export default function page() {
@@ -10,10 +10,7 @@ export default function page() {
       <SignInPage>
         <SignUpFormContainer>
           <SignInCard>
-            <VerifyEmail
-              linkTo='/get-started'
-              submissionLink='/get-started/set-up-account'
-            />
+            <PersonalDetailsForm />
           </SignInCard>
         </SignUpFormContainer>
       </SignInPage>
