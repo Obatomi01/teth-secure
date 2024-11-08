@@ -5,12 +5,16 @@
 
   height: 100vh;
   padding-block: vars.$padding-xxl;
-  overflow-y: hidden;
+  overflow-y: auto;
 
   .sign--in__container {
     max-width: vars.$container-width-larger;
     margin: auto;
-    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: vars.$padding-xxl;
+    // min-height: 100%;
 
     @include vars.sign--in__form--container;
 

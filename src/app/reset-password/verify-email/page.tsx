@@ -11,7 +11,7 @@ export default function page() {
         <SignInCard>
           <VerifyEmail
             linkTo='/reset-password'
-            submissionLink='/set-new-password'
+            submissionLink='/reset-password/set-new-password'
           />
         </SignInCard>
       </SignInPage>

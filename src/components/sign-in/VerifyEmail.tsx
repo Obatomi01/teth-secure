@@ -13,11 +13,13 @@ import BlueBtn from '../general/BlueBtn';
 
 type Props = {
   linkTo: '/reset-password' | '/get-started';
-  submissionLink: '/set-up-account' | '/set-new-password';
+  submissionLink:
+    | '/get-started/set-up-account'
+    | '/reset-password/set-new-password';
 };
 
 export default function VerifyEmail({ linkTo, submissionLink }: Props) {
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState<string[]>(Array(6).fill('')); // Initialize OTP as an array
   const otpRef = useRef<(HTMLInputElement | null)[]>([]);
   const router = useRouter();
 
@@ -29,17 +31,34 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
     router.push(`${submissionLink}`);
   }
 
-  const handleOTPChange = (newOtp: string) => {
-    const filteredOtp = newOtp.replace(/\D/g, '');
+  const handleChange = (otpValue: string) => {
+    // Only update OTP state if each character is numeric
+    if (/^\d*$/.test(otpValue)) {
+      setOtp(otpValue.split(''));
+    }
+  };
 
-    setOtp(filteredOtp); // Update the OTP with the filtered value
+  const handleIndividualChange = (value: string, index: number) => {
+    // Only allow numeric input
+    if (!/^\d*$/.test(value)) return;
 
-    // Move focus to the next input if the OTP is not fully entered
-    const nextIndex = filteredOtp.length;
-    if (nextIndex < 6 && otpRef.current[nextIndex]) {
-      otpRef.current[nextIndex]?.focus();
-    } else if (filteredOtp.length === 6) {
+    // Update the specific index in the OTP array without shifting others
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
+    // Move to the next input if a digit was entered and this isn’t the last box
+    if (value && index < otp.length - 1) {
+      otpRef.current[index + 1]?.focus();
+    } else if (newOtp.length === 6) {
       otpRef.current[5]?.blur(); // Remove focus from the last input
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    // Handle backspace to clear current input and focus the previous one
+    if (e.key === 'Backspace' && otp[index] === '' && index > 0) {
+      otpRef.current[index - 1]?.focus();
     }
   };
 
@@ -58,8 +77,8 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
       </p>
 
       <OTPInput
-        value={otp}
-        onChange={handleOTPChange}
+        value={otp.join('')}
+        onChange={handleChange}
         numInputs={6}
         renderInput={(props, index) => (
           <input
@@ -67,8 +86,12 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
             ref={(el) => {
               otpRef.current[index] = el;
             }}
+            value={otp[index] || ''}
+            onChange={(e) => handleIndividualChange(e.target.value, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            maxLength={1}
             inputMode='numeric'
-            pattern='[0-9]*'
+            style={{ width: '2rem', textAlign: 'center' }}
           />
         )}
         inputStyle={`${styles['verify--email__otp--input']}`}
