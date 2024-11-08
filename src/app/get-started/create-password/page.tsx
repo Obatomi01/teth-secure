@@ -11,8 +11,8 @@ export default function page() {
         <SignUpFormContainer>
           <SignInCard>
             <EnterNewPasswordForm
-              title='Enter New Password'
-              description='Enter your details to login to your account'
+              title='Create password'
+              description='Set up your Password to continue'
               firstLabel='New Password'
               firstPlaceholder='New Password'
               secondLabel='Confirm Password'

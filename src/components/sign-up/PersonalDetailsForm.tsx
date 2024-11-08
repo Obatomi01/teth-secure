@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
@@ -10,7 +9,6 @@ import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
 import SignInFormInput from '../sign-in/SignInFormInput';
 import { SignInFormInputProps } from '../sign-in/SignInFormInput';
 import BlueBtn from '../general/BlueBtn';
-import SignInCard from '../general/SignInCard';
 
 type PersonalDetailsFormValues = {
   firstName: string;

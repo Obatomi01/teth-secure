@@ -100,11 +100,11 @@ export default function EnterNewPasswordForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={manropeSemiBold.className}>Enter New Password</h2>
+      <h2 className={manropeSemiBold.className}>{title}</h2>
       <p
         className={`text-base mb-8 text-p-text-color ${manropeMedium.className}`}
       >
-        Please enter your new password below.
+        {description}
       </p>
 
       {enterNewPasswordFormInputs.map((input, index) => (
