@@ -24,6 +24,12 @@ export const signInHandler = async () => {
   return data;
 };
 
+export const signOutHandler = async () => {
+  // Sign Out
+  const data = {};
+  return data;
+};
+
 export const getStartedHandler = async () => {
   // Get Started
   const data = {};

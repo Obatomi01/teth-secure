@@ -1,4 +1,3 @@
-import DashboardPage from '@/components/dashboard/DashboardPage';
 import DashboardNav from '@/components/general/DashboardNav';
 import DashboardPageContainer from '@/components/general/DashboardPageContainer';
 import React from 'react';
@@ -8,7 +7,6 @@ export default function page() {
     <main>
       <DashboardPageContainer>
         <DashboardNav />
-        <DashboardPage />
       </DashboardPageContainer>
     </main>
   );

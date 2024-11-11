@@ -10,3 +10,6 @@ export const manropeExtraBold = localFont({
 export const manropeMedium = localFont({
   src: '../app/fonts/Manrope-Medium.ttf',
 });
+export const manropeLight = localFont({
+  src: '../app/fonts/Manrope-Light.ttf',
+});

@@ -14,9 +14,14 @@ export default function PricingPlan({
   typeOfBilling,
   featuresInPLan,
   typeOfPricingPlan,
+  isLoggedin,
 }: PricingPlansType) {
   return (
-    <div className={styles['pricing--plan']}>
+    <div
+      className={`${isLoggedin ? styles['pricing--plan__logged--in'] : ''} ${
+        styles['pricing--plan']
+      }`}
+    >
       <p className='text-color-primary text-base mb-6'>{typeOfPricingPlan}</p>
       <div className={`h-16`}>{amount}</div>
       <p className={`${manropeMedium.className} my-2 text-md h-6`}>
