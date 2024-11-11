@@ -76,7 +76,7 @@
   }
 
   .features--section__container {
-    margin-top: vars.$padding-5xl;
+    margin-block: vars.$padding-5xl;
     text-align: center;
 
     // display: flex;
@@ -143,44 +143,6 @@
     }
   }
 
-  .pricing--plans__container {
-    padding-top: vars.$padding-5xl;
-
-    @include vars.top-container;
-    img {
-      width: vars.$font-size-20;
-    }
-
-    h2,
-    h6 {
-      text-align: center;
-    }
-
-    h2 {
-      font-size: vars.$font-size-36;
-    }
-
-    h6 {
-      font-size: vars.$font-size-18;
-      width: 50%;
-      margin-inline: auto;
-    }
-
-    .pricing--plan__container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: vars.$padding-lg;
-
-      .pricing--plan {
-        width: 30%;
-        padding: vars.$padding-xl;
-        border-radius: 12px;
-
-        box-shadow: 0px 0px 10px 0px rgba(71, 59, 240, 0.1);
-      }
-    }
-  }
-
   .faqs--section__container {
     padding-top: vars.$padding-5xl;
 
@@ -227,9 +189,61 @@
   }
 }
 
+.pricing--plans__container {
+  // padding-top: vars.$padding-5xl;
+
+  @include vars.top-container;
+  img {
+    width: vars.$font-size-20;
+  }
+
+  h2,
+  h6 {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: vars.$font-size-36;
+  }
+
+  h6 {
+    font-size: vars.$font-size-18;
+    width: 50%;
+    margin-inline: auto;
+  }
+
+  .pricing--plan__container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: vars.$padding-lg;
+
+    .pricing--plan {
+      width: 30%;
+      padding: vars.$padding-xl;
+      border-radius: 12px;
+
+      box-shadow: 0px 0px 10px 0px rgba(71, 59, 240, 0.1);
+    }
+  }
+}
+
 // ************************************** //
 // *****       MEDIA QUERIES        ***** //
 // ************************************** //
+
+// ************************************** //
+// *****     1200PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 80em) {
+  .pricing--plans__container {
+    .pricing--plan__container {
+      .pricing--plan__logged--in {
+        width: 55%;
+        align-self: center;
+      }
+    }
+  }
+}
 
 // ************************************** //
 // *****     900PX BREAKPOINT      ***** //
@@ -264,18 +278,6 @@
       }
     }
 
-    .pricing--plans__container {
-      .pricing--plan__container {
-        flex-direction: column;
-        gap: vars.$padding-xl;
-
-        .pricing--plan {
-          width: 50%;
-          margin: auto;
-        }
-      }
-    }
-
     .faqs--section__container {
       .faqs--container {
         display: flex;
@@ -286,6 +288,22 @@
             width: 90%;
           }
         }
+      }
+    }
+  }
+
+  .pricing--plans__container {
+    .pricing--plan__container {
+      flex-direction: column;
+      gap: vars.$padding-xl;
+
+      .pricing--plan {
+        width: 50%;
+        margin: auto;
+      }
+
+      .pricing--plan__logged--in {
+        width: 75%;
       }
     }
   }
@@ -320,23 +338,6 @@
       }
     }
 
-    .pricing--plans__container {
-      h2 {
-        font-size: vars.$font-size-30;
-      }
-
-      h6 {
-        width: 100%;
-      }
-
-      .pricing--plan__container {
-        .pricing--plan {
-          padding: vars.$padding-lg;
-          width: 70%;
-        }
-      }
-    }
-
     .faqs--section__container {
       h2 {
         font-size: vars.$font-size-30;
@@ -350,6 +351,24 @@
             width: 100%;
           }
         }
+      }
+    }
+  }
+
+  .pricing--plans__container {
+    h2 {
+      font-size: vars.$font-size-30;
+    }
+
+    h6 {
+      width: 100%;
+    }
+
+    .pricing--plan__container {
+      .pricing--plan,
+      .pricing--plan__logged--in {
+        padding: vars.$padding-lg;
+        width: 70%;
       }
     }
   }
@@ -369,12 +388,13 @@
         width: 100%;
       }
     }
+  }
 
-    .pricing--plans__container {
-      .pricing--plan__container {
-        .pricing--plan {
-          width: 90%;
-        }
+  .pricing--plans__container {
+    .pricing--plan__container {
+      .pricing--plan,
+      .pricing--plan__logged--in {
+        width: 100%;
       }
     }
   }

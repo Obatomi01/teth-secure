@@ -16,7 +16,7 @@ const config: Config = {
         'bold-text-color': '#4F4F4F',
       },
       screens: {
-        md: '700px',
+        md: '800px',
       },
     },
   },

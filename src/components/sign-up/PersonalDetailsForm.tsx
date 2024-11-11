@@ -4,18 +4,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
-import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
-
-import SignInFormInput from '../sign-in/SignInFormInput';
-import { SignInFormInputProps } from '../sign-in/SignInFormInput';
-import BlueBtn from '../general/BlueBtn';
-
 type PersonalDetailsFormValues = {
   firstName: string;
   lastName: string;
   productName: string;
   companyName: string;
 };
+
+import { createFormInput } from '@/utils/formUtils';
+import FormComponent from '../general/FormComponents';
 
 export default function PersonalDetailsForm() {
   const {
@@ -25,80 +22,57 @@ export default function PersonalDetailsForm() {
   } = useForm<PersonalDetailsFormValues>();
   const router = useRouter();
 
-  const onSubmit = async (data: PersonalDetailsFormValues) => {
+  const onSubmit = handleSubmit((data) => {
     console.log(data);
-    // Handle form submission logic here, e.g., send data to an API
-    router.push('/get-started/add-business'); // Redirect to the next step
-  };
 
-  const personalDetailsFormInputs: SignInFormInputProps[] = [
-    {
-      register: (
-        <input
-          type='text'
-          {...register('firstName', { required: 'First Name is required' })}
-          placeholder='First Name'
-        />
-      ),
-      error: errors.firstName?.message,
-      label: 'First Name',
-    },
-    {
-      register: (
-        <input
-          type='text'
-          {...register('lastName', { required: 'Last Name is required' })}
-          placeholder='Last Name'
-        />
-      ),
-      error: errors.lastName?.message,
-      label: 'Last Name',
-    },
-    {
-      register: (
-        <input
-          type='text'
-          {...register('productName', { required: 'Product Name is required' })}
-          placeholder='Product Name'
-        />
-      ),
-      error: errors.productName?.message,
-      label: 'Product Name',
-    },
-    {
-      register: (
-        <input
-          type='text'
-          {...register('companyName', {
-            required: "Company's Name is required",
-          })}
-          placeholder="Company's Name"
-        />
-      ),
-      error: errors.companyName?.message,
-      label: "Company's Name",
-    },
+    router.push('/get-started/add-business');
+  });
+
+  const inputs = [
+    createFormInput(
+      'First Name',
+      'First Name',
+      register,
+      'firstName',
+      'First Name is required',
+      errors.firstName?.message
+    ),
+    createFormInput(
+      'Last Name',
+      'Last Name',
+      register,
+      'lastName',
+      'Last Name is required',
+      errors.lastName?.message
+    ),
+    createFormInput(
+      'Product Name',
+      'Product Name',
+      register,
+      'productName',
+      'Product Name is required',
+      errors.productName?.message
+    ),
+    createFormInput(
+      "Company's Name",
+      "Company's Name",
+      register,
+      'companyName',
+      "Company's Name is required",
+      errors.companyName?.message
+    ),
   ];
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={manropeSemiBold.className}>Personal Details</h2>
-      <p
-        className={`text-base mb-8 text-p-text-color ${manropeMedium.className}`}
-      >
-        Enter your personal and company details
-      </p>
-      {personalDetailsFormInputs.map((input, index) => (
-        <SignInFormInput key={index} {...input} />
-      ))}
-
-      <BlueBtn
-        hasBlueBackground
-        btnText='Proceed'
-        btnType='submit'
-        isNotLink
-        additionalStyles='w-full'
-      />
-    </form>
+    <FormComponent
+      title='Personal Details'
+      subtitle='Enter your personal and company details'
+      inputs={inputs.map((input, index) => ({
+        ...input,
+        key: index,
+      }))}
+      buttonText='Proceed'
+      onSubmit={onSubmit}
+    />
   );
 }

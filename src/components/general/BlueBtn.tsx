@@ -30,7 +30,9 @@ export default function BlueBtn({
           : styles['blue--border--btn']
       }`}
     >
-      <p className={manropeBold.className}>{btnText}</p>
+      <p className={`text-sm md:text-base ${manropeBold.className}`}>
+        {btnText}
+      </p>
     </Link>
   ) : (
     <button
@@ -41,7 +43,9 @@ export default function BlueBtn({
       }`}
       type={btnType}
     >
-      <p className={manropeBold.className}>{btnText}</p>
+      <p className={`text-sm md:text-base ${manropeBold.className}`}>
+        {btnText}
+      </p>
     </button>
   );
 }

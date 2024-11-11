@@ -1,0 +1,169 @@
+@use './variable.module' as vars;
+
+.dashboard--container {
+  display: flex;
+  position: relative;
+
+  background-color: #fdfcfc;
+}
+
+.dashboard--contents__container {
+  width: 75vw;
+  margin-left: calc(23vw + vars.$padding-lg);
+  //   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  //   justify-content: space-between;
+  gap: vars.$padding-lg;
+
+  .top--dashboard__container {
+    height: 12vh;
+    background: #f5f5f5;
+    padding-inline: vars.$padding-lg;
+
+    // width: 100%;
+    // display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tokens--container {
+    display: flex;
+
+    justify-content: space-between;
+
+    .token--container {
+      padding: vars.$padding-lg vars.$padding-xl;
+      width: 23%;
+      border-radius: 12px;
+
+      display: flex;
+      flex-direction: column;
+      gap: vars.$padding-lg;
+
+      h1 {
+        font-size: vars.$font-size-36;
+      }
+
+      p {
+        font-size: vars.$font-size-16;
+      }
+    }
+  }
+
+  .bottom--dashboard__container {
+    // height: 65%;
+    padding: vars.$padding-lg;
+
+    margin-bottom: vars.$padding-xxl;
+
+    display: flex;
+    justify-content: space-between;
+
+    .graph--container {
+      width: 65%;
+    }
+
+    .bottom--left__container {
+      width: 33%;
+
+      display: flex;
+      flex-direction: column;
+      gap: vars.$padding-lg;
+    }
+
+    .graph--container,
+    .bottom--left__container {
+      padding: vars.$padding-lg;
+      height: 100%;
+
+      background-color: #fff;
+      border-radius: 8px;
+    }
+  }
+}
+
+// ************************************** //
+// *****       MEDIA QUERIES        ***** //
+// ************************************** //
+
+// ************************************** //
+// *****     1300PX BREAKPOINT      ***** //
+// ************************************** //
+
+@media (max-width: 82em) {
+  .dashboard--contents__container {
+    width: 73vw;
+    margin-left: calc(25vw + vars.$padding-lg);
+
+    .tokens--container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+
+      row-gap: vars.$padding-lg;
+      column-gap: vars.$padding-lg;
+
+      .token--container {
+        width: 100%;
+      }
+    }
+
+    .bottom--dashboard__container {
+      flex-direction: column;
+      gap: vars.$padding-lg;
+      padding-inline: 0;
+
+      .bottom--left__container {
+        width: 100%;
+      }
+
+      .graph--container {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ************************************** //
+// *****     1000PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 63em) {
+  .dashboard--contents__container {
+    width: 64vw;
+    margin-left: calc(32vw + vars.$padding-lg);
+  }
+}
+
+// ************************************** //
+// *****     800PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 50em) {
+  .dashboard--contents__container {
+    width: 95%;
+    margin: auto;
+
+    .tokens--container {
+      display: flex;
+      flex-direction: column;
+
+      gap: vars.$padding-lg;
+    }
+  }
+
+  .dashboard--container {
+    margin-block: vars.$padding-xl;
+
+    gap: vars.$padding-lg;
+  }
+}
+
+// ************************************** //
+// *****     500PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 31.25em) {
+  .dashboard--contents__container {
+    width: 95%;
+  }
+}
