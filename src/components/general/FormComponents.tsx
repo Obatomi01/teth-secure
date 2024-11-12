@@ -5,7 +5,6 @@ import SignInFormInput from '../sign-in/SignInFormInput';
 import { SignInFormInputProps } from '../sign-in/SignInFormInput';
 
 import { manropeBold } from '@/styles/fonts';
-import FormPopUp from './FormPopUp';
 
 interface FormComponentProps {
   title: string;

@@ -8,14 +8,14 @@ import { manropeSemiBold, manropeLight } from '@/styles/fonts';
 import styles from '@/styles/report.module.scss';
 
 import TokenIcon from '@/../public/icons/token icons/token.png';
-import NextArrow from '@/../public/icons/next.png';
+// import NextArrow from '@/../public/icons/next.png';
 
 export default function OTPReport({
   userID,
   date,
-  otpLength,
-  otpType,
-  validity,
+  //   otpLength,
+  //   otpType,
+  //   validity,
   status,
 }: OtpRecord) {
   return (
