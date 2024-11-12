@@ -126,6 +126,11 @@
   //   TODO: Hover state of button
 }
 
+.blue--btn__container.blue-btn__with--dots {
+  padding-block: 0;
+  height: vars.$font-size-44;
+}
+
 .form--input__container {
   margin-bottom: vars.$padding-lg;
   display: flex;
@@ -210,6 +215,7 @@
 
 .ready--to__join {
   width: 45%;
+  margin-bottom: vars.$padding-4xl;
 
   h2 {
     font-size: vars.$font-size-36;
@@ -268,6 +274,86 @@
   }
 }
 
+.config--dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+
+  // padding-inline: vars.$padding-lg;
+  // padding-block: vars.$padding-sm;
+
+  .dropdown-select {
+    display: flex;
+    justify-content: space-between;
+
+    .dropdown--icon {
+      position: absolute;
+      right: 12px;
+    }
+  }
+
+  .dropdown-menu {
+    // position: absolute;
+    margin-left: vars.$padding-xs;
+
+    margin-top: vars.$padding-md;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$padding-sm;
+  }
+
+  .dropdown-option {
+    padding-inline: vars.$padding-lg;
+    padding-block: vars.$padding-sm;
+
+    p {
+      font-size: vars.$font-size-16;
+      width: 80%;
+      color: #747a80;
+    }
+  }
+}
+
+.config--li {
+  img {
+    align-self: center;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding-inline: 1.5rem;
+    padding-block: 0.5rem;
+
+    p {
+      font-size: vars.$font-size-16;
+      width: 80%;
+      color: #747a80;
+    }
+  }
+}
+
+.config--li.active {
+  a {
+    background-color: #e8e8e8;
+
+    .config--text {
+      color: #333333;
+    }
+  }
+
+  .config--image {
+    filter: invert(9%) sepia(95%) saturate(7226%) hue-rotate(252deg)
+      brightness(82%) contrast(127%);
+  }
+}
+
 .dashboard--nav__container {
   height: 100vh;
   width: 23vw;
@@ -279,16 +365,18 @@
   padding-block: vars.$padding-xxl;
 
   .dashboard--top__container {
-    height: 50%;
+    height: max-content;
     display: flex;
+
     flex-direction: column;
     justify-content: space-between;
 
     ul {
-      height: 80%;
+      // height: 80%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: vars.$padding-md;
 
       li {
         p {
@@ -304,7 +392,7 @@
       }
 
       li,
-      li.active {
+      .first--level__nav.active {
         display: flex;
         justify-content: space-between;
         align-content: center;
@@ -313,7 +401,7 @@
         padding-block: vars.$padding-sm;
       }
 
-      li.active {
+      .first--level__nav.active {
         background-color: #e8e8e8;
 
         img {
@@ -370,6 +458,33 @@
         color: #333333;
       }
     }
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+  margin: auto;
+}
+@keyframes l5 {
+  0% {
+    box-shadow: 15px 0 #e6eaff, -15px 0 #8981f0;
+    background: #e6eaff;
+  }
+  33% {
+    box-shadow: 15px 0 #e6eaff, -15px 0 #8981f0;
+    background: #8981f0;
+  }
+  66% {
+    box-shadow: 15px 0 #8981f0, -15px 0 #e6eaff;
+    background: #8981f0;
+  }
+  100% {
+    box-shadow: 15px 0 #8981f0, -15px 0 #e6eaff;
+    background: #e6eaff;
   }
 }
 
@@ -470,9 +585,39 @@
   .ready--to__join {
     width: 100%;
     text-align: center;
+    margin-bottom: 0;
 
     p {
       font-size: vars.$font-size-16;
+    }
+  }
+}
+
+// ************************************** //
+// *****     800PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 800px) {
+  .dashboard--nav__container {
+    display: none;
+  }
+
+  .dashboard--mobile__nav__container {
+    display: block;
+  }
+
+  .config--li {
+    a {
+      p {
+        width: 92%;
+      }
+    }
+  }
+
+  .config--dropdown {
+    .dropdown-option {
+      p {
+        width: 92%;
+      }
     }
   }
 }
@@ -502,6 +647,22 @@
         p {
           width: 87%;
         }
+      }
+    }
+  }
+
+  .config--li {
+    a {
+      p {
+        width: 87%;
+      }
+    }
+  }
+
+  .config--dropdown {
+    .dropdown-option {
+      p {
+        width: 87%;
       }
     }
   }

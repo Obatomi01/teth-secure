@@ -139,7 +139,7 @@
 // ************************************** //
 // *****     800PX BREAKPOINT      ***** //
 // ************************************** //
-@media (max-width: 50em) {
+@media (max-width: 800px) {
   .dashboard--contents__container {
     width: 95%;
     margin: auto;
@@ -153,9 +153,11 @@
   }
 
   .dashboard--container {
-    margin-block: vars.$padding-xl;
+    padding-block: vars.$padding-xl;
 
     gap: vars.$padding-lg;
+    display: flex;
+    flex-direction: column;
   }
 }
 

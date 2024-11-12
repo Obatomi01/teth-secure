@@ -16,7 +16,7 @@ export default function SignUpForm() {
           coloredText: 'Sign in',
           link: '/sign-in',
         }}
-        btnText='Reset Password'
+        btnText='Create Account'
       />
     </SignUpFormContainer>
   );

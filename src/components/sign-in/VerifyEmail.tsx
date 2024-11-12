@@ -10,6 +10,7 @@ import { verifyOTPHandler, requestOTPHandler } from '@/app/action';
 import styles from '@/styles/signIn.module.scss';
 import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
 import BlueBtn from '../general/BlueBtn';
+import FormPopUp from '../general/FormPopUp';
 
 type Props = {
   linkTo: '/reset-password' | '/get-started';
@@ -23,12 +24,36 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
   const otpRef = useRef<(HTMLInputElement | null)[]>([]);
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popUpMessage, setPopUpMessage] = useState('');
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     // Add logic to handle form submission
+
+    if (otp.some((value) => value === '' || isNaN(Number(value)))) {
+      setShowPopUp(true);
+      setPopUpMessage('Invalid OTP');
+
+      setTimeout(() => {
+        setShowPopUp(false);
+      }, 2000);
+
+      return;
+    }
+
+    setIsLoading(true);
     await verifyOTPHandler();
 
-    router.push(`${submissionLink}`);
+    setTimeout(() => {
+      setIsLoading(false);
+      // setShowPopUp(true);
+    }, 1000);
+
+    setTimeout(() => {
+      router.push(`${submissionLink}`);
+    }, 2000);
   }
 
   const handleChange = (otpValue: string) => {
@@ -64,6 +89,7 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <FormPopUp showPopUp={showPopUp} message={popUpMessage} />
       <h3 className={`text-2xl md:text-3xl mb-2 ${manropeSemiBold.className}`}>
         Verify your Email
       </h3>
@@ -104,6 +130,8 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
         btnText='Create Account'
         btnType='submit'
         additionalStyles='w-full mt-6'
+        isLoading={isLoading}
+        hasLoadingDots
       />
 
       <p
@@ -114,7 +142,12 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
           className={`text-color-primary ${manropeSemiBold.className} cursor-pointer`}
           onClick={() => {
             requestOTPHandler();
-            alert('OTP sent to your email');
+            setShowPopUp(true);
+            setPopUpMessage('OTP resent');
+
+            setTimeout(() => {
+              setShowPopUp(false);
+            }, 2000);
           }}
         >
           {' '}

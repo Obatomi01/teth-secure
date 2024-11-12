@@ -5,7 +5,7 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import stylea from '@/styles/general.module.scss';
+import styles from '@/styles/general.module.scss';
 import { manropeBold } from '@/styles/fonts';
 
 import Dashboard from '@/../public/icons/dashboard-nav/dashboard.png';
@@ -16,6 +16,11 @@ import Report from '@/../public/icons/dashboard-nav/report.png';
 import Subscriptions from '@/../public/icons/dashboard-nav/subscriptions.png';
 import Logo from '@/../public/icons/tethsecure.svg';
 import DashboardMobileNav from './DashboardMobileNav';
+import DropDownMenu from './DropDownMenu';
+
+import DotIcon from '@/../public/icons/dashboard-nav/Ellipse 1.png';
+
+import { Option } from './DropDownMenu';
 
 type NavOptionsType = {
   link: string;
@@ -44,15 +49,38 @@ export const navOptions: NavOptionsType[] = [
     text: 'Team Management',
     linkIcon: TeamManagement,
   },
+];
+
+export const configOptions: Option[] = [
   {
-    link: '/setup-configuration',
-    text: 'Setup Configuration',
-    linkIcon: SetupConfig,
+    label: (
+      <div className='flex justify-between'>
+        <Image
+          src={DotIcon}
+          alt='dot icon'
+          style={{
+            objectFit: 'contain',
+          }}
+        />
+        <p className={manropeBold.className}>Manage Users</p>
+      </div>
+    ),
+    value: '/manage-users',
   },
   {
-    link: '/account-settings',
-    text: 'Account Settings',
-    linkIcon: AccountSettings,
+    label: (
+      <div className='flex justify-between'>
+        <Image
+          src={DotIcon}
+          alt='dot icon'
+          style={{
+            objectFit: 'contain',
+          }}
+        />
+        <p className={manropeBold.className}>Manage Users</p>
+      </div>
+    ),
+    value: '/manage-roles',
   },
 ];
 
@@ -63,16 +91,18 @@ export default function DashboardNav() {
 
   return (
     <section>
-      <nav className={`hidden md:block ${stylea['dashboard--nav__container']}`}>
-        <div className={stylea['dashboard--top__container']}>
-          <div className='p-6'>
+      <nav className={`hidden md:block ${styles['dashboard--nav__container']}`}>
+        <div className={styles['dashboard--top__container']}>
+          <div className='pt-6 pb-10 px-6'>
             <Image src={Logo} alt='TethSecure Logo' priority />
           </div>
           <ul>
             {navOptions.map((option, index) => (
               <Link key={index} href={option.link}>
                 <li
-                  className={basePath === option.link ? stylea['active'] : ''}
+                  className={`${
+                    basePath === option.link ? styles['active'] : ''
+                  } ${styles['first--level__nav']}`}
                 >
                   <Image
                     src={option.linkIcon}
@@ -85,11 +115,50 @@ export default function DashboardNav() {
                 </li>
               </Link>
             ))}
+            <div
+              className={`${
+                basePath === '/setup-configuration' ? styles['active'] : ''
+              } ${styles['config--li']}`}
+            >
+              <DropDownMenu
+                options={configOptions}
+                onChange={() => {
+                  // Make the selected option active
+                }}
+                placeholder={
+                  <Link
+                    href={'/setup-configuration/manage-users'}
+                    className={`flex w-full justify-between`}
+                  >
+                    <Image
+                      src={SetupConfig}
+                      alt='setup configuration'
+                      className={styles['config--image']}
+                    />
+                    <p
+                      className={`${styles['config--text']} ${manropeBold.className}`}
+                    >
+                      Configuration
+                    </p>
+                  </Link>
+                }
+                isANavLink
+                shouldNotSetState
+              />
+            </div>
+            <Link href={'/account-settings'}>
+              <li>
+                <Image src={AccountSettings} alt='account settings' />
+                <p className={manropeBold.className}>Account Settings</p>
+              </li>
+            </Link>
           </ul>
         </div>
       </nav>
 
-      <nav className={`flex md:hidden`}>
+      <nav
+        className={`flex md:hidden ${styles['dashboard--mobile__nav__container']}`}
+      >
         <DashboardMobileNav />
       </nav>
     </section>

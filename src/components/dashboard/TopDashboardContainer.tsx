@@ -12,9 +12,13 @@ import { signOutHandler } from '@/app/action';
 
 type Props = {
   rightContent: React.ReactNode;
+  showRightContentForMobile?: boolean;
 };
 
-export default function TopDashboardContainer({ rightContent }: Props) {
+export default function TopDashboardContainer({
+  rightContent,
+  showRightContentForMobile,
+}: Props) {
   const router = useRouter();
 
   return (
@@ -67,7 +71,9 @@ export default function TopDashboardContainer({ rightContent }: Props) {
           <p className='self-center'>John Olasunkanmi</p>
         </div>
 
-        <div className='w-max'>{rightContent}</div>
+        {showRightContentForMobile && (
+          <div className='w-max'>{rightContent}</div>
+        )}
       </section>
     </>
   );

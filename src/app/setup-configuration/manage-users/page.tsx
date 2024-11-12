@@ -1,6 +1,7 @@
 import DashboardNav from '@/components/general/DashboardNav';
 import DashboardPageContainer from '@/components/general/DashboardPageContainer';
-import ReportPage from '@/components/report/ReportPage';
+import ManageUsersPage from '@/components/setup-configuration/ManageUsersPage';
+
 import React from 'react';
 
 export default function page() {
@@ -8,7 +9,7 @@ export default function page() {
     <main>
       <DashboardPageContainer>
         <DashboardNav />
-        <ReportPage />
+        <ManageUsersPage />
       </DashboardPageContainer>
     </main>
   );

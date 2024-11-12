@@ -46,7 +46,7 @@ export default function FAQs() {
         ))}
       </div>
       <p className='text-base text-center pt-8'>
-        Haven&apos;t got your answer?
+        Haven&apos;t gotten your answer?
         <Link href={'/contact-us'}>
           <span className='text-color-primary'> Contact our support now</span>
         </Link>

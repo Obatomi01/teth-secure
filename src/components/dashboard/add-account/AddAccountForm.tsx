@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { createFormInput } from '@/utils/formUtils';
 import { useForm, Controller } from 'react-hook-form';
 
 import DropDownMenu from '@/components/general/DropDownMenu';
 
-import { manropeMedium } from '@/styles/fonts';
+import { manropeMedium, manropeBold } from '@/styles/fonts';
 import SignInCard from '@/components/general/SignInCard';
 import SignInFormInput from '@/components/sign-in/SignInFormInput';
 
@@ -13,6 +13,7 @@ import BlueBtn from '@/components/general/BlueBtn';
 
 import styles from '@/styles/signIn.module.scss';
 import { Option } from '@/components/general/DropDownMenu';
+import FormPopUp from '@/components/general/FormPopUp';
 
 type AddAccountFormValues = {
   businessName: string;
@@ -31,6 +32,9 @@ export default function AddAccountForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<AddAccountFormValues>();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const pTags = (text: string) => (
     <p className={`text-base ${manropeMedium.className}`}>{text}</p>
@@ -132,6 +136,17 @@ export default function AddAccountForm() {
 
   const onSubmit = async (data: AddAccountFormValues) => {
     console.log(data);
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setShowPopUp(true);
+      setIsLoading(false);
+    }, 1000);
+
+    setTimeout(() => {
+      setShowPopUp(false);
+    }, 2000);
   };
 
   const inputs = [
@@ -237,9 +252,12 @@ export default function AddAccountForm() {
 
   return (
     <section>
-      <h4 className='text-center xl:text-left text-xl mb-4 ml-8'>
+      <h4
+        className={`text-center xl:text-left text-2xl md:text-xl mb-4 ml-8 ${manropeBold.className}`}
+      >
         Enter Business Information
       </h4>
+      <FormPopUp message='Data submitted' showPopUp={showPopUp} />
 
       <form onSubmit={handleSubmit(onSubmit)} className='hidden xl:flex mb-8'>
         <SignInCard>
@@ -282,6 +300,8 @@ export default function AddAccountForm() {
             btnType='submit'
             isNotLink
             additionalStyles='w-full'
+            isLoading={isLoading}
+            hasLoadingDots
           />
         </SignInCard>
       </form>

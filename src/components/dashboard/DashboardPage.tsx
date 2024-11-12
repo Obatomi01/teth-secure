@@ -20,6 +20,7 @@ export default function DashboardPage() {
             linkTo='/dashboard/add-account'
           />
         }
+        showRightContentForMobile
       />
       <Tokens />
       <BottomDashboardContainer />

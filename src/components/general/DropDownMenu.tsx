@@ -16,6 +16,7 @@ type Props = {
   onChange: (value: string) => void;
   placeholder?: React.ReactElement;
   shouldNotSetState?: boolean;
+  isANavLink?: boolean;
 };
 
 const DropDownMenu = ({
@@ -25,8 +26,9 @@ const DropDownMenu = ({
     <p className={manropeMedium.className}>Select another option</p>
   ),
   shouldNotSetState,
+  isANavLink,
 }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [selected, setSelected] = useState(placeholder);
 
   const handleSelect = (option: Option) => {
@@ -40,10 +42,19 @@ const DropDownMenu = ({
   };
 
   return (
-    <div className={styles['dropdown']} onClick={() => setIsOpen(!isOpen)}>
+    <div
+      className={isANavLink ? styles['config--dropdown'] : styles['dropdown']}
+      onClick={() => {
+        setIsOpen(!isOpen);
+      }}
+    >
       <div className={`flex ${styles['dropdown-select']}`}>
         {selected}
-        <Image src={DropdownMenu} alt='dropdown-menu' />
+        <Image
+          src={DropdownMenu}
+          alt='dropdown-menu'
+          className={styles['dropdown--icon']}
+        />
       </div>
 
       {isOpen && (

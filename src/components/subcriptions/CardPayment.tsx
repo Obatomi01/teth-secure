@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import BlueBtn from '../general/BlueBtn';
 import SignInFormInput from '../sign-in/SignInFormInput';
 import PaymentCard from './PaymentCard';
+import FormPopUp from '../general/FormPopUp';
 
 type CardPaymentFormInputProps = {
   cardNumber: number;
@@ -27,10 +28,22 @@ export default function CardPayment() {
   const [cvv, setCVV] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+
   const onSubmit = (data: CardPaymentFormInputProps) => {
     console.log(data);
 
-    debugger;
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setShowPopUp(true);
+      setIsLoading(false);
+    }, 1000);
+
+    setTimeout(() => {
+      setShowPopUp(false);
+    }, 2000);
   };
 
   // const handleExpiryDateChange = (e) => {
@@ -84,6 +97,7 @@ export default function CardPayment() {
               }
             },
           })}
+          inputMode='numeric'
           placeholder='1234 1234 1234 1234'
           onChange={(e) => {
             let input = e.target.value;
@@ -127,6 +141,7 @@ export default function CardPayment() {
     {
       register: (
         <input
+          inputMode='numeric'
           value={expiryDate}
           type='text'
           {...register('cardExpiry', {
@@ -182,6 +197,7 @@ export default function CardPayment() {
     {
       register: (
         <input
+          inputMode='numeric'
           type='text'
           value={cvv}
           {...register('cvv', {
@@ -213,6 +229,7 @@ export default function CardPayment() {
 
   return (
     <PaymentCard>
+      <FormPopUp message='Payment successful' showPopUp={showPopUp} />
       <form onSubmit={handleSubmit(onSubmit)}>
         {paymentFormInputs.map((input, index) => (
           <SignInFormInput key={index} {...input} />
@@ -224,6 +241,8 @@ export default function CardPayment() {
           btnType='submit'
           isNotLink
           additionalStyles='w-full'
+          isLoading={isLoading}
+          hasLoadingDots
         />
       </form>
     </PaymentCard>

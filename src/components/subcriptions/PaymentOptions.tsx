@@ -12,7 +12,7 @@ import Momo from '@/../public/icons/payment/momo.png';
 import PaymentOption from './PaymentOption';
 import DropDownMenu from '../general/DropDownMenu';
 
-import { manropeMedium } from '@/styles/fonts';
+import { manropeMedium, manropeBold } from '@/styles/fonts';
 
 export type PaymentOptionsType = {
   title: string;
@@ -70,6 +70,9 @@ export default function PaymentOptions() {
         ))}
       </div>
 
+      <p className={`${manropeBold.className} text-base mt-12 mb-2`}>
+        Select Payment method
+      </p>
       <section className={styles['dropdown--options']}>
         <DropDownMenu
           onChange={() => {}}

@@ -4,7 +4,7 @@ import BlueBtn from '../general/BlueBtn';
 import SignInFormInput from '../sign-in/SignInFormInput';
 import { SignInFormInputProps } from '../sign-in/SignInFormInput';
 
-import { manropeMedium, manropeSemiBold } from '@/styles/fonts';
+import { manropeBold } from '@/styles/fonts';
 
 interface FormComponentProps {
   title: string;
@@ -12,23 +12,26 @@ interface FormComponentProps {
   inputs: SignInFormInputProps[];
   buttonText: string;
   onSubmit: () => void;
+  isLoading?: boolean;
 }
 
 const FormComponent: React.FC<FormComponentProps> = ({
   title,
-  subtitle,
   inputs,
   buttonText,
   onSubmit,
+  isLoading,
 }) => {
   return (
     <form onSubmit={onSubmit}>
-      <h2 className={manropeSemiBold.className}>{title}</h2>
-      <p
+      <h2 className={`text-2xl md:text-3xl mb-8 ${manropeBold.className}`}>
+        {title}
+      </h2>
+      {/* <p
         className={`text-base mb-8 text-p-text-color ${manropeMedium.className}`}
       >
         {subtitle}
-      </p>
+      </p> */}
       {inputs.map((input, index) => (
         <SignInFormInput
           key={index}
@@ -43,6 +46,8 @@ const FormComponent: React.FC<FormComponentProps> = ({
         additionalStyles='w-full'
         hasBlueBackground
         isNotLink
+        isLoading={isLoading}
+        hasLoadingDots
       />
     </form>
   );

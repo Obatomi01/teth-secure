@@ -38,20 +38,7 @@ export default function USSDPaymentForBank({ bank }: Props) {
           cursor: 'pointer',
         }}
         onClick={async () => {
-          try {
-            await navigator.clipboard.writeText(
-              'This is the text to be copied'
-            );
-            alert('Content copied to clipboard');
-            /* Resolved - text copied to clipboard successfully */
-          } catch (err) {
-            if (err instanceof Error) {
-              alert(err.message);
-            } else {
-              alert('An unknown error occurred');
-            }
-            /* Rejected - text failed to copy to the clipboard */
-          }
+          await navigator.clipboard.writeText('This is the text to be copied');
         }}
       >
         Tap here to copy the code

@@ -11,38 +11,6 @@
     font-size: vars.$font-size-36;
   }
 
-  .pop--up {
-    background-color: #f4f7fa;
-    padding: vars.$padding-lg;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-
-    /* Centering the pop-up */
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    transition: all 0.5s ease; /* Shorter transition for better UX */
-    z-index: 2;
-
-    /* Starting styles */
-    opacity: 0;
-    transform: translate(-50%, -60%); /* Move slightly off-center initially */
-  }
-
-  .open {
-    transform: translate(-50%, -50%); /* Centered */
-    opacity: 1;
-  }
-
-  .hide {
-    transform: translate(-50%, -60%); /* Moves it offscreen */
-    opacity: 0;
-    pointer-events: none;
-  }
-
   .contact--form {
     .contact--form__top {
       display: grid;
@@ -63,6 +31,39 @@
       outline: none;
     }
   }
+}
+
+.pop--up {
+  background-color: #f4f7fa;
+  padding-block: vars.$padding-md;
+  padding-inline: vars.$padding-base;
+  border-radius: 8px;
+  // width: 90%;
+  // max-width: 400px;
+
+  /* Centering the pop-up */
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  transition: all 0.5s ease; /* Shorter transition for better UX */
+  z-index: 2;
+
+  /* Starting styles */
+  opacity: 0;
+  transform: translate(-50%, -60%); /* Move slightly off-center initially */
+}
+
+.open {
+  transform: translate(-50%, -50%); /* Centered */
+  opacity: 1;
+}
+
+.hide {
+  transform: translate(-50%, -60%); /* Moves it offscreen */
+  opacity: 0;
+  pointer-events: none;
 }
 
 // ************************************** //

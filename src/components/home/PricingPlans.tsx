@@ -57,7 +57,11 @@ export default function PricingPlans({ isLoggedIn }: Props) {
         'Monthly Security Reports',
       ],
       btnType: !isLoggedIn ? (
-        <BlueBtn linkTo='/' hasBlueBackground={false} btnText='Get started' />
+        <BlueBtn
+          linkTo='/get-started'
+          hasBlueBackground={false}
+          btnText='Get started'
+        />
       ) : (
         <div
           className={`${btnStyles['blue--border--btn']}
@@ -82,7 +86,9 @@ export default function PricingPlans({ isLoggedIn }: Props) {
       ],
       btnType: (
         <BlueBtn
-          linkTo={isLoggedIn ? '/subscriptions/pro/card-payment' : '/'}
+          linkTo={
+            isLoggedIn ? '/subscriptions/pro/card-payment' : '/get-started'
+          }
           hasBlueBackground
           btnText={isLoggedIn ? 'Upgrade to Pro' : 'Try pro'}
         />
@@ -101,7 +107,11 @@ export default function PricingPlans({ isLoggedIn }: Props) {
       ],
       btnType: (
         <BlueBtn
-          linkTo={isLoggedIn ? '/subscriptions/enterprise/card-payment' : '/'}
+          linkTo={
+            isLoggedIn
+              ? '/subscriptions/enterprise/card-payment'
+              : '/get-started'
+          }
           hasBlueBackground
           btnText='Try enterprise'
         />
