@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -13,6 +13,7 @@ import BlueBtn from '../general/BlueBtn';
 import { resetPasswordHandler, getStartedHandler } from '@/app/action';
 
 import { manropeMedium, manropeSemiBold } from '@/styles/fonts';
+import FormPopUp from '../general/FormPopUp';
 
 type FormProps = {
   email: string;
@@ -43,20 +44,41 @@ export default function ReceiveMailForm({
     formState: { errors },
   } = useForm<FormProps>();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const onSubmit = async (data: FormProps) => {
     console.log(data);
+    setIsLoading(true);
 
     if (formAction === 'Reset Password') {
       // Handle form submission logic here, e.g., send data to an API
       await resetPasswordHandler();
-      router.push('/reset-password/verify-email');
+
+      setTimeout(() => {
+        setIsLoading(false);
+        setShowPopUp(true);
+      }, 1000);
+
+      setTimeout(() => {
+        router.push('/reset-password/verify-email');
+      }, 2000);
+      // router.push('/reset-password/verify-email');
     }
 
     if (formAction === 'Get Started') {
       // Handle form submission logic here, e.g., send data to an API
       await getStartedHandler();
-      router.push('/get-started/verify-email');
+      setTimeout(() => {
+        setIsLoading(false);
+        setShowPopUp(true);
+      }, 1000);
+
+      setTimeout(() => {
+        router.push('/get-started/verify-email');
+      }, 2000);
+
+      // router.push('/get-started/verify-email');
     }
 
     // Handle form submission logic here, e.g., send data to an API
@@ -64,8 +86,11 @@ export default function ReceiveMailForm({
 
   return (
     <SignInCard>
+      <FormPopUp message='Email successfully sent' showPopUp={showPopUp} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={`mb-6 ${manropeMedium.className}`}>{title}</h2>
+        <h2 className={`text-xl md:text-2xl mb-6 ${manropeMedium.className}`}>
+          {title}
+        </h2>
         <SignInFormInput
           error={errors.email?.message}
           label={'Email'}
@@ -90,6 +115,8 @@ export default function ReceiveMailForm({
           btnType='submit'
           isNotLink
           additionalStyles='w-full'
+          isLoading={isLoading}
+          hasLoadingDots
         />
         <p
           className={`text-base mt-6 text-p-text-color ${manropeMedium.className} text-center`}

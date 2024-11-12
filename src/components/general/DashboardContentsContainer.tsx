@@ -7,7 +7,9 @@ type Props = {
 
 export default function DashboardContentsContainer({ children }: Props) {
   return (
-    <section className={styles['dashboard--contents__container']}>
+    <section
+      className={`w-full md:w-1/2 ${styles['dashboard--contents__container']}`}
+    >
       {children}
     </section>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
 
 import SignInFormInput from './SignInFormInput';
+import FormPopUp from '../general/FormPopUp';
 
 import { SignInFormInputProps } from './SignInFormInput';
 import BlueBtn from '../general/BlueBtn';
@@ -31,11 +32,25 @@ export default function SignInForm() {
   } = useForm<SignInFormValues>();
   const router = useRouter();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+
   const onSubmit = async (data: SignInFormValues) => {
+    setIsLoading(true);
+
     console.log(data);
 
     await signInHandler();
-    router.push('/dashboard');
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowPopUp(true);
+    }, 1000);
+
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 2000);
+
     // Handle form submission logic here, e.g., send data to an API
   };
 
@@ -87,13 +102,18 @@ export default function SignInForm() {
 
   return (
     <SignInCard>
+      <FormPopUp message='User found' showPopUp={showPopUp} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={manropeSemiBold.className}>Sign In</h2>
-        <p
+        <h2
+          className={`text-2xl md:text-3xl mb-8 ${manropeSemiBold.className}`}
+        >
+          Sign In
+        </h2>
+        {/* <p
           className={`text-base mb-8 text-p-text-color ${manropeMedium.className}`}
         >
           Enter your details to login to your account
-        </p>
+        </p> */}
         {signInFormInputs.map((input, index) => (
           <SignInFormInput key={index} {...input} />
         ))}
@@ -112,6 +132,8 @@ export default function SignInForm() {
           btnType='submit'
           isNotLink
           additionalStyles='w-full'
+          hasLoadingDots
+          isLoading={isLoading}
         />
 
         <p

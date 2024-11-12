@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
@@ -13,6 +13,7 @@ type PersonalDetailsFormValues = {
 
 import { createFormInput } from '@/utils/formUtils';
 import FormComponent from '../general/FormComponents';
+import FormPopUp from '../general/FormPopUp';
 
 export default function PersonalDetailsForm() {
   const {
@@ -20,12 +21,24 @@ export default function PersonalDetailsForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<PersonalDetailsFormValues>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+
   const router = useRouter();
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
 
-    router.push('/get-started/add-business');
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowPopUp(true);
+    }, 1000);
+
+    setTimeout(() => {
+      router.push('/get-started/add-business');
+    }, 2000);
   });
 
   const inputs = [
@@ -64,15 +77,19 @@ export default function PersonalDetailsForm() {
   ];
 
   return (
-    <FormComponent
-      title='Personal Details'
-      subtitle='Enter your personal and company details'
-      inputs={inputs.map((input, index) => ({
-        ...input,
-        key: index,
-      }))}
-      buttonText='Proceed'
-      onSubmit={onSubmit}
-    />
+    <>
+      <FormPopUp message='Data Submitted' showPopUp={showPopUp} />
+      <FormComponent
+        title='Personal Details'
+        subtitle=''
+        inputs={inputs.map((input, index) => ({
+          ...input,
+          key: index,
+        }))}
+        buttonText='Proceed'
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+      />
+    </>
   );
 }

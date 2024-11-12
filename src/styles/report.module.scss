@@ -1,0 +1,83 @@
+@use './variable.module' as vars;
+
+.report--table {
+  margin-bottom: vars.$padding-xxl;
+
+  thead {
+    tr {
+      background: #f1f1f1;
+      border-bottom: 4px solid white;
+    }
+  }
+
+  tbody {
+    tr {
+      background: #fafafa;
+      border-bottom: 2px solid white;
+    }
+  }
+
+  th,
+  td {
+    font-size: vars.$font-size-14;
+    padding-block: vars.$padding-base;
+    text-align: center;
+    border: 1px solid white;
+  }
+}
+
+.report--items {
+  display: none;
+}
+
+// ************************************** //
+// *****       MEDIA QUERIES        ***** //
+// ************************************** //
+// ************************************** //
+// *****     1008PX BREAKPOINT      ***** //
+// ************************************** //
+
+@media (max-width: 63em) {
+  .report--table {
+    display: none;
+  }
+
+  .report--items {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$padding-base;
+
+    .report--item {
+      width: 90%;
+      margin-inline: auto;
+
+      padding: vars.$padding-base;
+      background-color: #e8e8e8;
+
+      border-radius: 12px;
+      cursor: pointer;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        object-fit: contain;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+// ************************************** //
+// *****     800PX BREAKPOINT      ***** //
+// ************************************** //
+
+@media (max-width: 800px) {
+  .report--items {
+    .report--item {
+      width: 100%;
+    }
+  }
+}

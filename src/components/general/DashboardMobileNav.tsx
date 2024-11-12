@@ -8,9 +8,14 @@ import Logo from '@/../public/icons/tethsecure.svg';
 import Menu from '@/../public/icons/menu.png';
 import Close from '@/../public/icons/close.png';
 
-import { navOptions } from './DashboardNav';
+import { navOptions, configOptions } from './DashboardNav';
 import SignOut from '@/../public/icons/logout.png';
 import { signOutHandler } from '@/app/action';
+
+import SetupConfig from '@/../public/icons/dashboard-nav/setup-config.png';
+import AccountSettings from '@/../public/icons/dashboard-nav/account-settings.png';
+
+import DropDownMenu from './DropDownMenu';
 
 import { manropeBold } from '@/styles/fonts';
 
@@ -40,7 +45,7 @@ export default function DashboardMobileNav() {
   }, [isMenuOpen]);
 
   return (
-    <section className={styles['dashboard--mobile__nav__container']}>
+    <section>
       <div className='w-full flex content-center justify-between'>
         <Link
           href={'/dashboard'}
@@ -90,6 +95,43 @@ export default function DashboardMobileNav() {
               </li>
             </Link>
           ))}
+          <div
+            className={`${
+              basePath === '/setup-configuration' ? styles['active'] : ''
+            } ${styles['config--li']}`}
+          >
+            <DropDownMenu
+              options={configOptions}
+              onChange={() => {
+                // Make the selected option active
+              }}
+              placeholder={
+                <Link
+                  href={'/setup-configuration/manage-users'}
+                  className={`flex w-full justify-between`}
+                >
+                  <Image
+                    src={SetupConfig}
+                    alt='setup configuration'
+                    className={styles['config--image']}
+                  />
+                  <p
+                    className={`${styles['config--text']} ${manropeBold.className}`}
+                  >
+                    Configuration
+                  </p>
+                </Link>
+              }
+              isANavLink
+              shouldNotSetState
+            />
+          </div>
+          <Link href={'/account-settings'}>
+            <li>
+              <Image src={AccountSettings} alt='account settings' />
+              <p className={manropeBold.className}>Account Settings</p>
+            </li>
+          </Link>
 
           <li
             style={{

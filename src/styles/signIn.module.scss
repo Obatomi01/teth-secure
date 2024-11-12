@@ -37,7 +37,7 @@
   padding: vars.$padding-xl;
 
   h2 {
-    font-size: vars.$font-size-30;
+    // font-size: vars.$font-size-20;
   }
 }
 
@@ -87,10 +87,6 @@
 
   .sign--in__form {
     width: 60%;
-
-    h2 {
-      font-size: vars.$font-size-24;
-    }
   }
 
   .sign--up__container {
@@ -108,7 +104,7 @@
   }
 
   .sign--up__container {
-    gap: vars.$padding-md;
+    gap: vars.$padding-xl;
   }
 }
 
@@ -120,5 +116,9 @@
     width: 100%;
 
     padding-inline: vars.$padding-md;
+
+    // h2 {
+    //   font-size: vars.$font-size-18;
+    // }
   }
 }

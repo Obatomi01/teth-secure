@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 import ContactFormInput from './ContactFormInput';
-import FormPopUp from './FormPopUp';
+import FormPopUp from '../general/FormPopUp';
 
 import styles from '@/styles/contactUs.module.scss';
 import { manropeBold, manropeMedium } from '@/styles/fonts';
@@ -30,13 +30,16 @@ const ContactForm = () => {
   } = useForm<FormValues>();
 
   const [showPopUp, setShowPopUp] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = (data: FormValues) => {
     console.log('button clicked');
     setShowPopUp(true);
+    // setIsLoading(true);
 
     setTimeout(() => {
       setShowPopUp(false);
+      // setIsLoading(false);
     }, 3000);
 
     console.log(data);
@@ -104,7 +107,7 @@ const ContactForm = () => {
 
   return (
     <section className={styles['contact--form__container']}>
-      <FormPopUp showPopUp={showPopUp} />
+      <FormPopUp showPopUp={showPopUp} message='Form submitted successfully!' />
 
       <h1 className={`text-center ${manropeBold.className}`}>Contact Us</h1>
       <p className={`text-base text-center mb-8 ${manropeMedium.className}`}>
@@ -135,6 +138,8 @@ const ContactForm = () => {
             btnText='Submit'
             btnType='submit'
             additionalStyles='mt-4 md:mt-2 mx-auto'
+            // isLoading={isLoading}
+            // hasLoadingDots
           />
         </div>
       </form>

@@ -1,14 +1,15 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
-import { manropeSemiBold, manropeMedium } from '@/styles/fonts';
+import { manropeBold } from '@/styles/fonts';
 
 import SignInFormInput from '../sign-in/SignInFormInput';
 import { SignInFormInputProps } from '../sign-in/SignInFormInput';
 import BlueBtn from '../general/BlueBtn';
+import FormPopUp from '../general/FormPopUp';
 
 type Props = {
   title: string;
@@ -29,7 +30,6 @@ export type EnterNewPasswordFormValues = {
 
 export default function EnterNewPasswordForm({
   title,
-  description,
   firstLabel,
   firstPlaceholder,
   secondLabel,
@@ -42,12 +42,24 @@ export default function EnterNewPasswordForm({
     formState: { errors },
   } = useForm<EnterNewPasswordFormValues>();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+
   const router = useRouter();
 
   const onSubmit = async (data: EnterNewPasswordFormValues) => {
+    setIsLoading(true);
     console.log(data);
     // Handle form submission logic, e.g., send data to an API
-    router.push('/dashboard');
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowPopUp(true);
+    }, 1000);
+
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 2000);
   };
 
   // Watch the newPassword field to use in confirmPassword validation
@@ -100,12 +112,15 @@ export default function EnterNewPasswordForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={manropeSemiBold.className}>{title}</h2>
-      <p
+      <FormPopUp message='Password successfully set' showPopUp={showPopUp} />
+      <h2 className={`text-xl md:text-2xl mb-8 ${manropeBold.className}`}>
+        {title}
+      </h2>
+      {/* <p
         className={`text-base mb-8 text-p-text-color ${manropeMedium.className}`}
       >
         {description}
-      </p>
+      </p> */}
 
       {enterNewPasswordFormInputs.map((input, index) => (
         <SignInFormInput key={index} {...input} />
@@ -117,6 +132,8 @@ export default function EnterNewPasswordForm({
         btnType='submit'
         isNotLink
         additionalStyles='w-full'
+        isLoading={isLoading}
+        hasLoadingDots
       />
     </form>
   );

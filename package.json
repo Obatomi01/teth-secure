@@ -6,11 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "find:unused": "next-unused"
+  },
+  "next-unused": {
+    "alias": {},
+    "include": [
+      "component"
+    ],
+    "exclude": [],
+    "entrypoints": []
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^15.0.3",
+    "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "next": "^15.0.2",
+    "next-unused": "^0.0.6",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.1",

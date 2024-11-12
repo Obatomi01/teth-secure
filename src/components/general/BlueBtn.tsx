@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { manropeBold } from '@/styles/fonts';
 import styles from '@/styles/general.module.scss';
+import LoadingDots from './LoadingDots';
 
 type Props = {
   linkTo?: string;
@@ -11,6 +12,8 @@ type Props = {
   isNotLink?: boolean;
   btnType?: 'button' | 'submit';
   additionalStyles?: string;
+  hasLoadingDots?: boolean;
+  isLoading?: boolean;
 };
 
 export default function BlueBtn({
@@ -20,6 +23,8 @@ export default function BlueBtn({
   isNotLink,
   btnType,
   additionalStyles,
+  hasLoadingDots,
+  isLoading,
 }: Props) {
   return !isNotLink ? (
     <Link
@@ -40,12 +45,16 @@ export default function BlueBtn({
         hasBlueBackground
           ? styles['blue--btn__container']
           : styles['blue--border--btn']
-      }`}
+      } ${hasLoadingDots ? styles['blue-btn__with--dots'] : ''}`}
       type={btnType}
     >
-      <p className={`text-sm md:text-base ${manropeBold.className}`}>
-        {btnText}
-      </p>
+      {isLoading ? (
+        <LoadingDots />
+      ) : (
+        <p className={`text-sm md:text-base ${manropeBold.className}`}>
+          {btnText}
+        </p>
+      )}
     </button>
   );
 }
