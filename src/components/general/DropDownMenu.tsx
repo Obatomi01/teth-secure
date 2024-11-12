@@ -28,7 +28,7 @@ const DropDownMenu = ({
   shouldNotSetState,
   isANavLink,
 }: Props) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(placeholder);
 
   const handleSelect = (option: Option) => {
