@@ -340,7 +340,20 @@
 }
 
 .config--li.active {
-  a {
+  .dropdown-option {
+    .active {
+      img {
+        filter: invert(9%) sepia(95%) saturate(7226%) hue-rotate(252deg)
+          brightness(82%) contrast(127%);
+      }
+
+      p {
+        color: vars.$color-primary;
+      }
+    }
+  }
+
+  .dropdown-select {
     background-color: #e8e8e8;
 
     .config--text {
@@ -355,7 +368,9 @@
 }
 
 .dashboard--nav__container {
-  height: 100vh;
+  min-height: 100vh;
+  // overflow-y: auto;
+
   width: 23vw;
   position: fixed;
 
@@ -365,7 +380,9 @@
   padding-block: vars.$padding-xxl;
 
   .dashboard--top__container {
-    height: max-content;
+    overflow-y: auto;
+    max-height: 100vh;
+
     display: flex;
 
     flex-direction: column;
@@ -377,6 +394,8 @@
       flex-direction: column;
       justify-content: space-between;
       gap: vars.$padding-md;
+
+      margin-bottom: vars.$padding-6xl;
 
       li {
         p {
@@ -414,6 +433,13 @@
         }
       }
     }
+  }
+}
+
+.dashboard--mobile__nav__container {
+  .menu--container {
+    overflow-y: auto;
+    padding-bottom: vars.$padding-xl;
   }
 }
 

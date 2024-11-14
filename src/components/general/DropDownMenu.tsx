@@ -32,6 +32,8 @@ const DropDownMenu = ({
   const [selected, setSelected] = useState(placeholder);
 
   const handleSelect = (option: Option) => {
+    if (isANavLink) return;
+
     if (shouldNotSetState) {
       setIsOpen(false);
       return;
@@ -45,10 +47,14 @@ const DropDownMenu = ({
     <div
       className={isANavLink ? styles['config--dropdown'] : styles['dropdown']}
       onClick={() => {
+        if (isANavLink) return;
         setIsOpen(!isOpen);
       }}
     >
-      <div className={`flex ${styles['dropdown-select']}`}>
+      <div
+        className={`flex ${styles['dropdown-select']}`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {selected}
         <Image
           src={DropdownMenu}

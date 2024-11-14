@@ -5,6 +5,7 @@
   position: relative;
 
   background-color: #fdfcfc;
+  min-height: 100vh;
 }
 
 .dashboard--contents__container {
@@ -142,7 +143,7 @@
 @media (max-width: 800px) {
   .dashboard--contents__container {
     width: 95%;
-    margin: auto;
+    margin-inline: auto;
 
     .tokens--container {
       display: flex;

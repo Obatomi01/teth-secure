@@ -8,7 +8,7 @@ import Logo from '@/../public/icons/tethsecure.svg';
 import Menu from '@/../public/icons/menu.png';
 import Close from '@/../public/icons/close.png';
 
-import { navOptions, configOptions } from './DashboardNav';
+import { navOptions } from './DashboardNav';
 import SignOut from '@/../public/icons/logout.png';
 import { signOutHandler } from '@/app/action';
 
@@ -16,6 +16,8 @@ import SetupConfig from '@/../public/icons/dashboard-nav/setup-config.png';
 import AccountSettings from '@/../public/icons/dashboard-nav/account-settings.png';
 
 import DropDownMenu from './DropDownMenu';
+import { Option } from './DropDownMenu';
+import DotIcon from '@/../public/icons/dashboard-nav/Ellipse 1.png';
 
 import { manropeBold } from '@/styles/fonts';
 
@@ -43,6 +45,57 @@ export default function DashboardMobileNav() {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
+
+  const configPath = `${basePath}/${pathname.split('/')[2]}`;
+
+  const configJSX = (linkTo: string, title: string) => {
+    return (
+      <Link
+        className={`flex justify-between ${
+          configPath === linkTo ? styles['active'] : ''
+        }`}
+        href={linkTo}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <Image
+          src={DotIcon}
+          alt='dot icon'
+          style={{
+            objectFit: 'contain',
+          }}
+        />
+        <p className={manropeBold.className}>{title}</p>
+      </Link>
+    );
+  };
+
+  const configDashboardOptions: Option[] = [
+    {
+      label: configJSX('/setup-configuration/manage-users', 'Manage Users'),
+      value: '/manage-users',
+    },
+    {
+      label: configJSX(
+        '/setup-configuration/app-credentials',
+        'App Credentials'
+      ),
+      value: '/app-credentials',
+    },
+    {
+      label: configJSX(
+        '/setup-configuration/otp-configuration',
+        'OTP Configuration'
+      ),
+      value: '/otp-configuration',
+    },
+    {
+      label: configJSX(
+        '/setup-configuration/webhook-integration',
+        'Webhook Integration'
+      ),
+      value: '/webhook-integration',
+    },
+  ];
 
   return (
     <section>
@@ -101,15 +154,12 @@ export default function DashboardMobileNav() {
             } ${styles['config--li']}`}
           >
             <DropDownMenu
-              options={configOptions}
+              options={configDashboardOptions}
               onChange={() => {
                 // Make the selected option active
               }}
               placeholder={
-                <Link
-                  href={'/setup-configuration/manage-users'}
-                  className={`flex w-full justify-between`}
-                >
+                <li className={`flex w-full justify-between`}>
                   <Image
                     src={SetupConfig}
                     alt='setup configuration'
@@ -120,7 +170,7 @@ export default function DashboardMobileNav() {
                   >
                     Configuration
                   </p>
-                </Link>
+                </li>
               }
               isANavLink
               shouldNotSetState
