@@ -9,7 +9,7 @@ type Props = {
 export default function DashboardPageContainer({ children }: Props) {
   return (
     <section
-      className={`flex-col md:flex-row justify-between ${styles['dashboard--container']}`}
+      className={`flex-col md:flex-row  md:justify-between ${styles['dashboard--container']}`}
     >
       {children}
     </section>

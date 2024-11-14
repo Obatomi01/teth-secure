@@ -1,15 +1,7 @@
-import DashboardNav from '@/components/general/DashboardNav';
-import DashboardPageContainer from '@/components/general/DashboardPageContainer';
-import ReportPage from '@/components/report/ReportPage';
+import OtpReportTable from '@/components/report/OTPReportTable';
+
 import React from 'react';
 
 export default function page() {
-  return (
-    <main>
-      <DashboardPageContainer>
-        <DashboardNav />
-        <ReportPage />
-      </DashboardPageContainer>
-    </main>
-  );
+  return <OtpReportTable />;
 }

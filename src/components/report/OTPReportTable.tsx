@@ -1,4 +1,4 @@
-// OtpTable.tsx
+'use client';
 import React from 'react';
 
 import styles from '@/styles/report.module.scss';
@@ -14,7 +14,7 @@ export type OtpRecord = {
   status: string;
 };
 
-const otpData: OtpRecord[] = [
+export const otpData: OtpRecord[] = [
   {
     date: '2024-03-21 09:15',
     userID: 'user123',

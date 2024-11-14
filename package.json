@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "find:unused": "next-unused"
+    "find:unused": "next-unused",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:no-deprecation": "node --no-deprecation ./node_modules/.bin/jest"
   },
   "next-unused": {
     "alias": {},
@@ -31,15 +34,22 @@
     "style-loader": "^4.0.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.16",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "sass": "^1.80.6",
     "sass-loader": "^16.0.3",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5",
     "webpack": "^5.96.1"
   }

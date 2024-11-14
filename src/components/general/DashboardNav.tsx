@@ -51,25 +51,60 @@ export const navOptions: NavOptionsType[] = [
   },
 ];
 
+const configJSX = (linkTo: string, title: string) => {
+  return (
+    <Link className='flex justify-between' href={linkTo}>
+      <Image
+        src={DotIcon}
+        alt='dot icon'
+        style={{
+          objectFit: 'contain',
+        }}
+      />
+      <p className={manropeBold.className}>{title}</p>
+    </Link>
+  );
+};
+
 export const configOptions: Option[] = [
   {
-    label: (
-      <div className='flex justify-between'>
-        <Image
-          src={DotIcon}
-          alt='dot icon'
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-        <p className={manropeBold.className}>Manage Users</p>
-      </div>
-    ),
+    label: configJSX('/setup-configuration/manage-users', 'Manage Users'),
     value: '/manage-users',
   },
   {
-    label: (
-      <div className='flex justify-between'>
+    label: configJSX('/setup-configuration/api-credentials', 'Api Credentials'),
+    value: '/manage-roles',
+  },
+  {
+    label: configJSX(
+      '/setup-configuration/otp-configuration',
+      'OTP Configuration'
+    ),
+    value: '/otp-configuration',
+  },
+  {
+    label: configJSX(
+      '/setup-configuration/webhook-integration',
+      'Webhook Integration'
+    ),
+    value: '/webhook-integration',
+  },
+];
+
+function DashboardNav() {
+  const pathname = usePathname();
+
+  const basePath = `/${pathname.split('/')[1]}`;
+  const configPath = `${basePath}/${pathname.split('/')[2]}`;
+
+  const configJSX = (linkTo: string, title: string) => {
+    return (
+      <Link
+        className={`flex justify-between ${
+          configPath === linkTo ? styles['active'] : ''
+        }`}
+        href={linkTo}
+      >
         <Image
           src={DotIcon}
           alt='dot icon'
@@ -77,17 +112,38 @@ export const configOptions: Option[] = [
             objectFit: 'contain',
           }}
         />
-        <p className={manropeBold.className}>Manage Users</p>
-      </div>
-    ),
-    value: '/manage-roles',
-  },
-];
+        <p className={manropeBold.className}>{title}</p>
+      </Link>
+    );
+  };
 
-export default function DashboardNav() {
-  const pathname = usePathname();
-
-  const basePath = `/${pathname.split('/')[1]}`;
+  const configDashboardOptions: Option[] = [
+    {
+      label: configJSX('/setup-configuration/manage-users', 'Manage Users'),
+      value: '/manage-users',
+    },
+    {
+      label: configJSX(
+        '/setup-configuration/app-credentials',
+        'App Credentials'
+      ),
+      value: '/app-credentials',
+    },
+    {
+      label: configJSX(
+        '/setup-configuration/otp-configuration',
+        'OTP Configuration'
+      ),
+      value: '/otp-configuration',
+    },
+    {
+      label: configJSX(
+        '/setup-configuration/webhook-integration',
+        'Webhook Integration'
+      ),
+      value: '/webhook-integration',
+    },
+  ];
 
   return (
     <section>
@@ -121,15 +177,12 @@ export default function DashboardNav() {
               } ${styles['config--li']}`}
             >
               <DropDownMenu
-                options={configOptions}
+                options={configDashboardOptions}
                 onChange={() => {
                   // Make the selected option active
                 }}
                 placeholder={
-                  <Link
-                    href={'/setup-configuration/manage-users'}
-                    className={`flex w-full justify-between`}
-                  >
+                  <li className={`flex w-full justify-between`}>
                     <Image
                       src={SetupConfig}
                       alt='setup configuration'
@@ -140,14 +193,19 @@ export default function DashboardNav() {
                     >
                       Configuration
                     </p>
-                  </Link>
+                  </li>
                 }
                 isANavLink
                 shouldNotSetState
               />
             </div>
+
             <Link href={'/account-settings'}>
-              <li>
+              <li
+                className={`${
+                  basePath === '/account-settings' ? styles['active'] : ''
+                } ${styles['first--level__nav']}`}
+              >
                 <Image src={AccountSettings} alt='account settings' />
                 <p className={manropeBold.className}>Account Settings</p>
               </li>
@@ -164,3 +222,5 @@ export default function DashboardNav() {
     </section>
   );
 }
+
+export default DashboardNav;
