@@ -25,6 +25,7 @@
 }
 
 .sign--in__form {
+  background-color: #fff;
   width: 45%;
 
   margin: auto;
@@ -39,6 +40,11 @@
   h2 {
     // font-size: vars.$font-size-20;
   }
+}
+
+.sign--in__form.backdrop {
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .sign--up__container {

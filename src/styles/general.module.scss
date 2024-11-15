@@ -514,6 +514,13 @@
   }
 }
 
+.not--a__form--input {
+  border: 2px solid #eae9e99c;
+  border-radius: 8px;
+  padding: vars.$padding-sm;
+  width: 100%;
+}
+
 // ************************************** //
 // *****       MEDIA QUERIES        ***** //
 // ************************************** //

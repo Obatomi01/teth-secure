@@ -30,6 +30,18 @@
   display: none;
 }
 
+.reset--user__password {
+  margin: auto;
+
+  width: 40%;
+  z-index: 10;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 // ************************************** //
 // *****       MEDIA QUERIES        ***** //
 // ************************************** //
@@ -48,6 +60,7 @@
     gap: vars.$padding-base;
 
     .report--item {
+      position: relative;
       width: 90%;
       margin-inline: auto;
 
@@ -68,6 +81,10 @@
       }
     }
   }
+
+  .reset--user__password {
+    width: 55%;
+  }
 }
 
 // ************************************** //
@@ -79,5 +96,19 @@
     .report--item {
       width: 100%;
     }
+  }
+
+  .reset--user__password {
+    width: 75%;
+  }
+}
+
+// ************************************** //
+// *****     500PX BREAKPOINT      ***** //
+// ************************************** //
+
+@media (max-width: 500px) {
+  .reset--user__password {
+    width: 95%;
   }
 }

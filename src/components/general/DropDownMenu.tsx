@@ -60,6 +60,9 @@ const DropDownMenu = ({
           src={DropdownMenu}
           alt='dropdown-menu'
           className={styles['dropdown--icon']}
+          style={{
+            objectFit: 'contain',
+          }}
         />
       </div>
 

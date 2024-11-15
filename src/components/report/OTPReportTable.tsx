@@ -1,9 +1,10 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from '@/styles/report.module.scss';
 import { manropeMedium, manropeBold } from '@/styles/fonts';
 import OTPReport from './OTPReport';
+import SearchUser from '../general/SearchUser';
 
 export type OtpRecord = {
   date: string;
@@ -138,8 +139,23 @@ export const otpData: OtpRecord[] = [
 ];
 
 const OtpReportTable: React.FC = () => {
+  const [searchUserInput, setSearchUserInput] = useState('');
+
+  // filter the users in the ManageUsersTable component based on the search input value
+  const filteredItems =
+    searchUserInput === ''
+      ? otpData
+      : otpData.filter((item) => {
+          const searchTerm = searchUserInput.toLowerCase();
+          return item.userID.toLowerCase().includes(searchTerm);
+        });
+
   return (
     <>
+      <SearchUser
+        onChange={(value) => setSearchUserInput(value)}
+        placeholder='Search by ID'
+      />
       <table className={`${styles['report--table']}`}>
         <thead>
           <tr>
@@ -152,7 +168,7 @@ const OtpReportTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {otpData.map((record: OtpRecord, index: number) => (
+          {filteredItems.map((record: OtpRecord, index: number) => (
             <tr key={index}>
               <td className={manropeMedium.className}>{record.date}</td>
               <td className={manropeMedium.className}>{record.userID}</td>
@@ -196,7 +212,7 @@ const OtpReportTable: React.FC = () => {
       </table>
 
       <section className={`${styles['report--items']}`}>
-        {otpData.map((record: OtpRecord, index: number) => (
+        {filteredItems.map((record: OtpRecord, index: number) => (
           <OTPReport key={index} {...record} />
         ))}
       </section>
