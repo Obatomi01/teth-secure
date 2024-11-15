@@ -1,13 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect, useRef } from 'react';
+
+import { useRouter } from 'next/navigation';
 
 import { UserData } from './ManageUsersTable';
 import styles from '@/styles/report.module.scss';
 
-import NextArrow from '@/../public/icons/next.png';
+import { manropeMedium } from '@/styles/fonts';
+
 import Image from 'next/image';
 import { manropeSemiBold, manropeLight } from '@/styles/fonts';
 import UserIcon from '@/../public/icons/dashboard-nav/account-settings.png';
+import ActionIcon from '@/../public/icons/action-icon.png';
 
 export default function UsersReport({
   name,
@@ -16,10 +19,53 @@ export default function UsersReport({
   // totalOTPGenerated,
   // usedOTP,
   // failedOTP,
+  onShowResetUserPassword,
   userID,
 }: UserData) {
+  const [selectedUser, setSelectedUser] = useState<string | null>(null);
+  // const [showResetUserPassword, setShowResetUserPassword] = useState(false);
+
+  const popUpRef = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if ((event.target as Element).closest('.action--button')) {
+        return;
+      }
+
+      if (
+        popUpRef.current &&
+        !popUpRef.current.contains(event.target as Node)
+      ) {
+        setSelectedUser(null);
+      }
+    };
+    // if (showResetUserPassword) {
+    //   // Prevent body scroll
+    //   document.body.style.overflowY = 'hidden';
+    // } else {
+    //   // Restore body scroll
+    //   document.body.style.overflowY = 'auto';
+    // }
+
+    // Cleanup when component unmounts or isOpen changes
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // document.body.style.overflowY = 'auto';
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleClick = (userID: string) => {
+    // Toggle the visibility of content for the clicked item
+    setSelectedUser((prev) => (prev === userID ? null : userID));
+  };
+
   return (
-    <Link href={`/setup-configuration/manage-users/${userID}`}>
+    <div>
       <div className={styles['report--item']}>
         <div className='flex content-center gap-2'>
           <Image src={UserIcon} alt='user' />
@@ -47,9 +93,89 @@ export default function UsersReport({
               {emailAddress}
             </p>
           </div>
-          <Image src={NextArrow} alt='next' className='self-center' />
+
+          <div className='flex'>
+            <div
+              onClick={() => handleClick(userID)}
+              className='flex m-auto action--button'
+              style={{
+                width: '48px',
+                height: '48px',
+                cursor: 'pointer',
+              }}
+            >
+              <Image
+                src={ActionIcon}
+                alt=''
+                className='self-center m-auto'
+                style={{
+                  position: 'relative',
+                  zIndex: 1,
+                }}
+              />
+            </div>
+            {selectedUser === userID && (
+              <div
+                ref={popUpRef}
+                style={{
+                  position: 'absolute',
+                  right: '15px',
+                  top: '70px',
+                  borderRadius: '8px',
+                  boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                  backgroundColor: '#FFFFFF',
+
+                  paddingBlock: '12px',
+                  paddingInline: '20px',
+                  zIndex: 2,
+
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  textAlign: 'left',
+                }}
+              >
+                <p
+                  className={`${manropeMedium.className}`}
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                >
+                  Deactivate
+                </p>
+                <p
+                  className={`${manropeMedium.className}`}
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                >
+                  Diasble OTP
+                </p>
+                <p
+                  className={`${manropeMedium.className}`}
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                  onClick={onShowResetUserPassword}
+                >
+                  Reset Password
+                </p>
+                <p
+                  className={`${manropeMedium.className}`}
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                  onClick={() =>
+                    router.push(`/setup-configuration/manage-users/${userID}`)
+                  }
+                >
+                  Show More
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

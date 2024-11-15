@@ -8,6 +8,13 @@ import UsersReport from './UsersReport';
 
 import Image from 'next/image';
 import ActionIcon from '@/../public/icons/action-icon.png';
+import EnterNewPasswordForm from '@/components/reset-password/EnterNewPasswordForm';
+import SignInCard from '@/components/general/SignInCard';
+import Backdrop from '@/components/general/Backdrop';
+
+type ManageUsersTableProps = {
+  users: UserData[] | [];
+};
 
 export type UserData = {
   name: string;
@@ -17,6 +24,8 @@ export type UserData = {
   usedOTP: number;
   failedOTP: number;
   userID: string;
+  onShowResetUserPassword?: () => void;
+  onSelectUser?: (value: string) => void;
 };
 
 export const userData: UserData[] = [
@@ -157,8 +166,10 @@ export const userData: UserData[] = [
   },
 ];
 
-export default function ManageUsersTable() {
+export default function ManageUsersTable({ users }: ManageUsersTableProps) {
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
+  const [showResetUserPassword, setShowResetUserPassword] = useState(false);
+
   const popUpRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -174,10 +185,22 @@ export default function ManageUsersTable() {
         setSelectedUser(null);
       }
     };
+    if (showResetUserPassword) {
+      // Prevent body scroll
+      document.body.style.overflowY = 'hidden';
+    } else {
+      // Restore body scroll
+      document.body.style.overflowY = 'auto';
+    }
+
+    // Cleanup when component unmounts or isOpen changes
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    return () => {
+      document.body.style.overflowY = 'auto';
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showResetUserPassword]);
 
   const handleClick = (userID: string) => {
     // Toggle the visibility of content for the clicked item
@@ -199,7 +222,7 @@ export default function ManageUsersTable() {
           </tr>
         </thead>
         <tbody>
-          {userData.map((record: UserData, index: number) => (
+          {users.map((record: UserData, index: number) => (
             <tr key={index} className='relative'>
               <td className={manropeMedium.className}>{record.name}</td>
               <td className={manropeMedium.className}>{record.emailAddress}</td>
@@ -293,6 +316,7 @@ export default function ManageUsersTable() {
                       style={{
                         cursor: 'pointer',
                       }}
+                      onClick={() => setShowResetUserPassword(true)}
                     >
                       Reset Password
                     </p>
@@ -304,9 +328,35 @@ export default function ManageUsersTable() {
         </tbody>
       </table>
 
+      {showResetUserPassword && (
+        <div>
+          <Backdrop onChange={() => setShowResetUserPassword(false)} />
+
+          <div className={`${styles['reset--user__password']}`}>
+            <SignInCard hasBackdrop>
+              <EnterNewPasswordForm
+                title='Reset User Password'
+                description=''
+                firstLabel='Enter New Password'
+                firstPlaceholder='Enter New Password'
+                secondLabel='Confirm New Password'
+                secondPlaceholder='Re - Enter Password'
+              />
+            </SignInCard>
+          </div>
+        </div>
+      )}
+
       <section className={`${styles['report--items']}`}>
-        {userData.map((record: UserData, index: number) => (
-          <UsersReport key={index} {...record} />
+        {users.map((record: UserData, index: number) => (
+          <UsersReport
+            key={index}
+            {...record}
+            onSelectUser={() => {}}
+            onShowResetUserPassword={() => {
+              setShowResetUserPassword(true);
+            }}
+          />
         ))}
       </section>
     </>
