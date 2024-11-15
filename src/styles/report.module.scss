@@ -73,11 +73,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: vars.$padding-sm;
+      align-items: center;
 
       img {
         object-fit: contain;
         width: 24px;
         height: 24px;
+        align-self: center;
       }
     }
   }

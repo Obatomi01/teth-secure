@@ -64,6 +64,13 @@ export default function UsersReport({
     setSelectedUser((prev) => (prev === userID ? null : userID));
   };
 
+  function truncateText(text: string, maxLength: number) {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + '...';
+    }
+    return text; // Return the text as is if it's within the limit
+  }
+
   return (
     <div>
       <div className={styles['report--item']}>
@@ -90,7 +97,7 @@ export default function UsersReport({
               {userStatus}
             </p>
             <p className={`${manropeLight.className} text-sm`}>
-              {emailAddress}
+              {truncateText(emailAddress, 15)}
             </p>
           </div>
 
@@ -110,7 +117,7 @@ export default function UsersReport({
                 className='self-center m-auto'
                 style={{
                   position: 'relative',
-                  zIndex: 1,
+                  // zIndex: 1,
                 }}
               />
             </div>
