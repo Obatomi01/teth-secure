@@ -26,10 +26,10 @@ export default function TopDashboardContainer({
   return (
     <>
       <section
-        className={`hidden md:flex ${styles['top--dashboard__container']}`}
+        className={`hidden md:flex md:gap-8 ${styles['top--dashboard__container']}`}
       >
         {rightContent}
-        <div className='flex gap-6 content-center'>
+        <div className='flex gap-6 items-center'>
           <Image
             src={ProfilePicture}
             alt='profile-picture'

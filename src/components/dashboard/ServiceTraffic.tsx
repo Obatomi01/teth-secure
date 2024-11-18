@@ -42,9 +42,9 @@ export default function ServiceTraffic() {
         </h4>
 
         <div className='flex justify-between gap-5'>
-          <h1 className={`text-4xl md:text-5xl ${manropeMedium.className}`}>
+          <h5 className={`text-4xl md:text-5xl ${manropeMedium.className}`}>
             421
-          </h1>
+          </h5>
           <p
             className={`${manropeMedium.className} flex self-center text-green-500`}
           >

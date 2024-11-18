@@ -18,6 +18,8 @@ type Props = {
   firstPlaceholder: string;
   secondLabel: string;
   secondPlaceholder: string;
+  linkTo?: string;
+  actionAfterSubmit?: () => void;
 };
 
 /**
@@ -34,6 +36,7 @@ export default function EnterNewPasswordForm({
   firstPlaceholder,
   secondLabel,
   secondPlaceholder,
+  actionAfterSubmit,
 }: Props) {
   const {
     register,
@@ -58,7 +61,11 @@ export default function EnterNewPasswordForm({
     }, 1000);
 
     setTimeout(() => {
-      router.push('/dashboard');
+      if (actionAfterSubmit) {
+        actionAfterSubmit();
+      } else {
+        router.push('/dashboard');
+      }
     }, 2000);
   };
 
