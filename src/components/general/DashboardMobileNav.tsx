@@ -177,7 +177,11 @@ export default function DashboardMobileNav() {
             />
           </div>
           <Link href={'/account-settings'}>
-            <li>
+            <li
+              className={
+                basePath === '/account-settings' ? styles['active'] : ''
+              }
+            >
               <Image src={AccountSettings} alt='account settings' />
               <p className={manropeBold.className}>Account Settings</p>
             </li>
