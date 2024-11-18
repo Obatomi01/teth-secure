@@ -1,0 +1,92 @@
+@use './variable.module' as vars;
+
+.webhook--code__container {
+  margin-block: vars.$padding-lg;
+
+  .code--container {
+    display: flex;
+    justify-content: space-between;
+
+    padding: vars.$padding-lg;
+
+    background-color: #fafafa;
+    border: 1px solid #cfdbd5b2;
+
+    pre {
+      max-width: 100%;
+      overflow-x: auto;
+
+      code {
+        font-size: vars.$font-size-14;
+        overflow-x: auto;
+      }
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.webhook--contents__container {
+  width: 65%;
+  margin-inline: auto;
+  margin-top: vars.$padding-lg;
+  margin-bottom: vars.$padding-3xl;
+}
+
+.buttons--container {
+  margin-top: vars.$padding-xl;
+  display: flex;
+  gap: vars.$padding-lg;
+}
+
+// ************************************** //
+// *****       MEDIA QUERIES        ***** //
+// ************************************** //
+// ************************************** //
+// *****     1000PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 1000px) {
+  .webhook--contents__container {
+    width: 85%;
+  }
+}
+
+// ************************************** //
+// *****     800PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 800px) {
+  .webhook--contents__container {
+    width: 100%;
+
+    margin-top: -10px;
+  }
+}
+
+// ************************************** //
+// *****     600PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 600px) {
+  .webhook--code__container {
+    .code--container {
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+// ************************************** //
+// *****     370PX BREAKPOINT      ***** //
+// ************************************** //
+@media (max-width: 370px) {
+  .buttons--container {
+    flex-direction: column;
+    gap: vars.$padding-md;
+  }
+}

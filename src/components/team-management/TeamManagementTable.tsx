@@ -1,10 +1,6 @@
-'use client';
-
 import styles from '@/styles/report.module.scss';
 import { manropeMedium, manropeBold } from '@/styles/fonts';
 import React, { useState, useRef, useEffect } from 'react';
-
-import UsersReport from './UsersReport';
 
 import Image from 'next/image';
 import ActionIcon from '@/../public/icons/action-icon.png';
@@ -12,163 +8,24 @@ import EnterNewPasswordForm from '@/components/reset-password/EnterNewPasswordFo
 import SignInCard from '@/components/general/SignInCard';
 import Backdrop from '@/components/general/Backdrop';
 
-type ManageUsersTableProps = {
-  users: UserData[] | [];
+import { TeamUserData } from './TeamManagementPage';
+import EditRoleForm from './EditRoleForm';
+import DeactivateUser from './DeactivateUser';
+import MemberReport from './MemberReport';
+
+type Props = {
+  users: TeamUserData[] | [];
 };
 
-export type UserData = {
-  name: string;
-  emailAddress: string;
-  userStatus: string;
-  totalOTPGenerated: number;
-  usedOTP: number;
-  failedOTP: number;
-  userID: string;
-  onShowResetUserPassword?: () => void;
-  onSelectUser?: (value: string) => void;
-};
-
-export const userData: UserData[] = [
-  {
-    name: 'Adeola Akinyemi',
-    emailAddress: 'adeola.akinyemi@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 30,
-    usedOTP: 20,
-    failedOTP: 5,
-    userID: 'user123',
-  },
-  {
-    name: 'Chinwe Okafor',
-    emailAddress: 'chinwe.okafor@example.com',
-    userStatus: 'inactive',
-    totalOTPGenerated: 25,
-    usedOTP: 15,
-    failedOTP: 7,
-    userID: 'user456',
-  },
-  {
-    name: 'Bola Adebayo',
-    emailAddress: 'bola.adebayo@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 40,
-    usedOTP: 35,
-    failedOTP: 2,
-    userID: 'user789',
-  },
-  {
-    name: 'Ifeanyi Eze',
-    emailAddress: 'ifeanyi.eze@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 50,
-    usedOTP: 40,
-    failedOTP: 5,
-    userID: 'user101',
-  },
-  {
-    name: 'Ngozi Adichie',
-    emailAddress: 'ngozi.adichie@example.com',
-    userStatus: 'inactive',
-    totalOTPGenerated: 20,
-    usedOTP: 10,
-    failedOTP: 8,
-    userID: 'user102',
-  },
-  {
-    name: 'Tunde Bakare',
-    emailAddress: 'tunde.bakare@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 45,
-    usedOTP: 30,
-    failedOTP: 10,
-    userID: 'user103',
-  },
-  {
-    name: 'Aisha Bello',
-    emailAddress: 'aisha.bello@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 33,
-    usedOTP: 28,
-    failedOTP: 3,
-    userID: 'user104',
-  },
-  {
-    name: 'Emeka Obi',
-    emailAddress: 'emeka.obi@example.com',
-    userStatus: 'inactive',
-    totalOTPGenerated: 22,
-    usedOTP: 18,
-    failedOTP: 2,
-    userID: 'user105',
-  },
-  {
-    name: 'Funke Ojo',
-    emailAddress: 'funke.ojo@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 38,
-    usedOTP: 33,
-    failedOTP: 4,
-    userID: 'user106',
-  },
-  {
-    name: 'Gbenga Alabi',
-    emailAddress: 'gbenga.alabi@example.com',
-    userStatus: 'inactive',
-    totalOTPGenerated: 18,
-    usedOTP: 13,
-    failedOTP: 3,
-    userID: 'user107',
-  },
-  {
-    name: 'Kemi Lawal',
-    emailAddress: 'kemi.lawal@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 35,
-    usedOTP: 32,
-    failedOTP: 1,
-    userID: 'user108',
-  },
-  {
-    name: 'Yinka Adebisi',
-    emailAddress: 'yinka.adebisi@example.com',
-    userStatus: 'inactive',
-    totalOTPGenerated: 17,
-    usedOTP: 12,
-    failedOTP: 5,
-    userID: 'user109',
-  },
-  {
-    name: 'Sade Bamidele',
-    emailAddress: 'sade.bamidele@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 40,
-    usedOTP: 35,
-    failedOTP: 2,
-    userID: 'user110',
-  },
-  {
-    name: 'Chidinma Nwankwo',
-    emailAddress: 'chidinma.nwankwo@example.com',
-    userStatus: 'active',
-    totalOTPGenerated: 42,
-    usedOTP: 39,
-    failedOTP: 1,
-    userID: 'user111',
-  },
-  {
-    name: 'Olusegun Folarin',
-    emailAddress: 'olusegun.folarin@example.com',
-    userStatus: 'inactive',
-    totalOTPGenerated: 26,
-    usedOTP: 20,
-    failedOTP: 4,
-    userID: 'user112',
-  },
-];
-
-export default function ManageUsersTable({ users }: ManageUsersTableProps) {
+export default function TeamManagementTable({ users }: Props) {
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [showResetUserPassword, setShowResetUserPassword] = useState(false);
+  const [showEditRole, setShowEditRole] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    name: '',
+    role: '',
+  });
+  const [showDeactivateUser, setShowDeactivateUser] = useState(false);
 
   const popUpRef = useRef<HTMLDivElement>(null);
 
@@ -188,7 +45,7 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
     };
 
     // Prevent body scroll when the reset password modal is open
-    if (showResetUserPassword) {
+    if (showResetUserPassword || showEditRole || showDeactivateUser) {
       // Prevent body scroll
       document.body.style.overflowY = 'hidden';
     } else {
@@ -203,7 +60,7 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
       document.body.style.overflowY = 'auto';
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showResetUserPassword]);
+  }, [showResetUserPassword, showEditRole, showDeactivateUser]);
 
   const handleClick = (userID: string) => {
     // Toggle the visibility of content for the clicked item
@@ -212,20 +69,19 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
 
   return (
     <>
-      <table className={`${styles['report--table']}`}>
+      <table className={`w-full ${styles['report--table']}`}>
         <thead>
           <tr>
             <th className={manropeBold.className}>Name</th>
             <th className={manropeBold.className}>Email Address</th>
             <th className={manropeBold.className}>User Status</th>
-            <th className={manropeBold.className}>Total OTP Generated</th>
-            <th className={manropeBold.className}>Used OTP</th>
-            <th className={manropeBold.className}>Failed OTP</th>
+            <th className={manropeBold.className}>Role</th>
+            <th className={manropeBold.className}>Last Login</th>
             <th className={manropeBold.className}>Action</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((record: UserData, index: number) => (
+          {users.map((record: TeamUserData, index: number) => (
             <tr key={index} className='relative'>
               <td className={manropeMedium.className}>{record.name}</td>
               <td className={manropeMedium.className}>{record.emailAddress}</td>
@@ -238,9 +94,9 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
                   className={manropeMedium.className}
                   style={{
                     color:
-                      record.userStatus === 'active' ? '#008423' : '#F94144',
+                      record.userStatus === 'Active' ? '#008423' : '#F94144',
                     backgroundColor:
-                      record.userStatus === 'active' ? '#E9FFE1' : '#FFF8F8',
+                      record.userStatus === 'Active' ? '#E9FFE1' : '#FFF8F8',
                     width: '108px',
                     textAlign: 'center',
                     paddingBlock: '0.4rem',
@@ -252,11 +108,9 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
                   {record.userStatus}
                 </p>
               </td>
-              <td className={manropeMedium.className}>
-                {record.totalOTPGenerated}
-              </td>
-              <td className={manropeMedium.className}>{record.usedOTP}</td>
-              <td className={manropeMedium.className}>{record.failedOTP}</td>
+              <td className={manropeMedium.className}>{record.role}</td>
+              <td className={manropeMedium.className}>{record.lastLogin}</td>
+
               <td className='flex'>
                 <div
                   onClick={() => handleClick(record.userID)}
@@ -303,6 +157,13 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
                       style={{
                         cursor: 'pointer',
                       }}
+                      onClick={() => {
+                        setShowDeactivateUser(true);
+                        setUserDetails({
+                          name: record.name,
+                          role: record.role,
+                        });
+                      }}
                     >
                       Deactivate
                     </p>
@@ -311,9 +172,17 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
                       style={{
                         cursor: 'pointer',
                       }}
+                      onClick={() => {
+                        setShowEditRole(true);
+                        setUserDetails({
+                          name: record.name,
+                          role: record.role,
+                        });
+                      }}
                     >
-                      Diasble OTP
+                      Edit role
                     </p>
+
                     <p
                       className={`${manropeMedium.className}`}
                       style={{
@@ -331,6 +200,37 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
         </tbody>
       </table>
 
+      {showEditRole && (
+        <div>
+          <Backdrop onChange={() => setShowEditRole(false)} />
+
+          <div className={`${styles['reset--user__password']}`}>
+            <SignInCard hasBackdrop>
+              <EditRoleForm
+                userName={userDetails.name}
+                userRole={userDetails.role}
+              />
+            </SignInCard>
+          </div>
+        </div>
+      )}
+
+      {showDeactivateUser && (
+        <div>
+          <Backdrop onChange={() => setShowDeactivateUser(false)} />
+
+          <div className={`${styles['reset--user__password']}`}>
+            <SignInCard hasBackdrop>
+              <DeactivateUser
+                userName={userDetails.name}
+                userRole={userDetails.role}
+                onDeactivateUser={() => setShowDeactivateUser(false)}
+              />
+            </SignInCard>
+          </div>
+        </div>
+      )}
+
       {showResetUserPassword && (
         <div>
           <Backdrop onChange={() => setShowResetUserPassword(false)} />
@@ -338,12 +238,13 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
           <div className={`${styles['reset--user__password']}`}>
             <SignInCard hasBackdrop>
               <EnterNewPasswordForm
-                title='Reset User Password'
+                title='Reset Member Password'
                 description=''
                 firstLabel='Enter New Password'
                 firstPlaceholder='Enter New Password'
                 secondLabel='Confirm New Password'
                 secondPlaceholder='Re - Enter Password'
+                linkTo='/team-management'
                 actionAfterSubmit={() => setShowResetUserPassword(false)}
               />
             </SignInCard>
@@ -352,13 +253,24 @@ export default function ManageUsersTable({ users }: ManageUsersTableProps) {
       )}
 
       <section className={`${styles['report--items']}`}>
-        {users.map((record: UserData, index: number) => (
-          <UsersReport
+        {users.map((record: TeamUserData, index: number) => (
+          <MemberReport
             key={index}
             {...record}
             onSelectUser={() => {}}
             onShowResetUserPassword={() => {
               setShowResetUserPassword(true);
+            }}
+            onDeactivateUser={(name, role) => {
+              setShowDeactivateUser(true);
+              setUserDetails({ name, role });
+            }}
+            onEditRole={(name, role) => {
+              setShowEditRole(true);
+              setUserDetails({
+                name,
+                role,
+              });
             }}
           />
         ))}

@@ -170,7 +170,7 @@ export default function OTPConfigurationForm() {
 
           <BlueBtn
             hasBlueBackground
-            btnText='Configuire'
+            btnText='Configure'
             btnType='submit'
             isNotLink
             additionalStyles='w-full'

@@ -16,7 +16,6 @@ export default function OTPConfigurationPage() {
             OTP Configuration
           </h3>
         }
-        showRightContentForMobile={true}
       />
       <OTPConfigurationForm />
     </DashboardContentsContainer>

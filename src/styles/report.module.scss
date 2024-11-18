@@ -1,7 +1,7 @@
 @use './variable.module' as vars;
 
 .report--table {
-  margin-bottom: vars.$padding-xxl;
+  margin-bottom: vars.$padding-5xl;
 
   thead {
     tr {
@@ -59,6 +59,8 @@
     flex-direction: column;
     gap: vars.$padding-base;
 
+    padding-bottom: vars.$padding-6xl;
+
     .report--item {
       position: relative;
       width: 90%;
@@ -78,8 +80,8 @@
 
       img {
         object-fit: contain;
-        width: 24px;
-        height: 24px;
+        width: 18px;
+        height: 18px;
         align-self: center;
       }
     }

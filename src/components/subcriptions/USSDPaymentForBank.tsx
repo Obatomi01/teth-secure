@@ -38,7 +38,7 @@ export default function USSDPaymentForBank({ bank }: Props) {
           cursor: 'pointer',
         }}
         onClick={async () => {
-          await navigator.clipboard.writeText('This is the text to be copied');
+          await navigator.clipboard.writeText(bank.code);
         }}
       >
         Tap here to copy the code

@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { UserData } from './ManageUsersTable';
 import styles from '@/styles/report.module.scss';
 
+import { TeamUserData } from './TeamManagementPage';
 import { manropeMedium } from '@/styles/fonts';
 
 import Image from 'next/image';
@@ -12,16 +12,19 @@ import { manropeSemiBold, manropeLight } from '@/styles/fonts';
 import UserIcon from '@/../public/icons/dashboard-nav/account-settings.png';
 import ActionIcon from '@/../public/icons/action-icon.png';
 
-export default function UsersReport({
+export default function MemberReport({
   name,
   emailAddress,
   userStatus,
   // totalOTPGenerated,
   // usedOTP,
   // failedOTP,
+  role,
   onShowResetUserPassword,
+  onDeactivateUser,
   userID,
-}: UserData) {
+  onEditRole,
+}: TeamUserData) {
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   // const [showResetUserPassword, setShowResetUserPassword] = useState(false);
 
@@ -42,13 +45,6 @@ export default function UsersReport({
         setSelectedUser(null);
       }
     };
-    // if (showResetUserPassword) {
-    //   // Prevent body scroll
-    //   document.body.style.overflowY = 'hidden';
-    // } else {
-    //   // Restore body scroll
-    //   document.body.style.overflowY = 'auto';
-    // }
 
     // Cleanup when component unmounts or isOpen changes
 
@@ -83,9 +79,9 @@ export default function UsersReport({
           <div className='flex flex-col gap-2'>
             <p
               style={{
-                color: userStatus === 'active' ? '#008423' : '#EB5757',
+                color: userStatus === 'Active' ? '#008423' : '#EB5757',
                 backgroundColor:
-                  userStatus === 'active' ? '#E9FFE1' : '#FDEDEC',
+                  userStatus === 'Active' ? '#E9FFE1' : '#FDEDEC',
                 width: '108px',
                 textAlign: 'center',
                 paddingBlock: '0.2rem',
@@ -148,6 +144,9 @@ export default function UsersReport({
                   style={{
                     cursor: 'pointer',
                   }}
+                  onClick={() =>
+                    onDeactivateUser && onDeactivateUser(name, role)
+                  }
                 >
                   Deactivate
                 </p>
@@ -156,8 +155,9 @@ export default function UsersReport({
                   style={{
                     cursor: 'pointer',
                   }}
+                  onClick={() => onEditRole && onEditRole(name, role)}
                 >
-                  Diasble OTP
+                  Edit Role
                 </p>
                 <p
                   className={`${manropeMedium.className}`}
@@ -174,7 +174,7 @@ export default function UsersReport({
                     cursor: 'pointer',
                   }}
                   onClick={() =>
-                    router.push(`/setup-configuration/manage-users/${userID}`)
+                    router.push(`/team-management/${userID.toLowerCase()}`)
                   }
                 >
                   Show More

@@ -14,6 +14,7 @@ type Props = {
   additionalStyles?: string;
   hasLoadingDots?: boolean;
   isLoading?: boolean;
+  onClickHandler?: () => void;
 };
 
 export default function BlueBtn({
@@ -25,6 +26,7 @@ export default function BlueBtn({
   additionalStyles,
   hasLoadingDots,
   isLoading,
+  onClickHandler,
 }: Props) {
   return !isNotLink ? (
     <Link
@@ -33,7 +35,7 @@ export default function BlueBtn({
         hasBlueBackground
           ? styles['blue--btn__container']
           : styles['blue--border--btn']
-      }`}
+      } flex`}
     >
       <p className={`text-sm md:text-base ${manropeBold.className}`}>
         {btnText}
@@ -45,8 +47,9 @@ export default function BlueBtn({
         hasBlueBackground
           ? styles['blue--btn__container']
           : styles['blue--border--btn']
-      } ${hasLoadingDots ? styles['blue-btn__with--dots'] : ''}`}
+      } ${hasLoadingDots ? styles['blue-btn__with--dots'] : ''} flex`}
       type={btnType}
+      onClick={onClickHandler}
     >
       {isLoading ? (
         <LoadingDots />
