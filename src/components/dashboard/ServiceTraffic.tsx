@@ -37,14 +37,14 @@ export default function ServiceTraffic() {
   return (
     <div className='flex justify-between content-center'>
       <div>
-        <h4 className={`${manropeBold.className} text-lg mb-4`}>
+        <h1 className={`${manropeBold.className} text-lg mb-4`}>
           Service Traffic
-        </h4>
+        </h1>
 
         <div className='flex justify-between gap-5'>
-          <h5 className={`text-4xl md:text-5xl ${manropeMedium.className}`}>
+          <h2 className={`text-4xl md:text-5xl ${manropeMedium.className}`}>
             421
-          </h5>
+          </h2>
           <p
             className={`${manropeMedium.className} flex self-center text-green-500`}
           >

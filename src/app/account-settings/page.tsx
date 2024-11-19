@@ -21,7 +21,7 @@ export default function page() {
               </h3>
             }
           />
-          <AddAccountForm />
+          <AddAccountForm updateAccount={true} />
         </DashboardContentsContainer>
       </DashboardPageContainer>
     </main>

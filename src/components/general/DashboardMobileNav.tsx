@@ -127,17 +127,21 @@ export default function DashboardMobileNav() {
           </div>
         </div>
 
-        <ul className='flex flex-col gap-8'>
+        <div className={`flex flex-col gap-8 ${styles['ul']}`}>
           {navOptions.map((navLink, index) => (
             <Link
               key={index}
               href={navLink.link}
               onClick={() => setIsMenuOpen(false)}
             >
-              <li className={basePath === navLink.link ? styles['active'] : ''}>
+              <div
+                className={`${
+                  basePath === navLink.link ? styles['active'] : ''
+                } ${styles['li']}`}
+              >
                 <Image
                   src={navLink.linkIcon}
-                  alt={navLink.text}
+                  alt=''
                   style={{
                     objectFit: 'contain',
                   }}
@@ -145,7 +149,7 @@ export default function DashboardMobileNav() {
                 <p className={`text-base ${manropeBold.className}`}>
                   {navLink.text}
                 </p>
-              </li>
+              </div>
             </Link>
           ))}
           <div
@@ -159,7 +163,7 @@ export default function DashboardMobileNav() {
                 // Make the selected option active
               }}
               placeholder={
-                <li className={`flex w-full justify-between`}>
+                <div className={`flex w-full justify-between ${styles['li']}`}>
                   <Image
                     src={SetupConfig}
                     alt='setup configuration'
@@ -170,24 +174,24 @@ export default function DashboardMobileNav() {
                   >
                     Configuration
                   </p>
-                </li>
+                </div>
               }
               isANavLink
               shouldNotSetState
             />
           </div>
           <Link href={'/account-settings'}>
-            <li
-              className={
+            <div
+              className={`${
                 basePath === '/account-settings' ? styles['active'] : ''
-              }
+              } ${styles['li']}`}
             >
-              <Image src={AccountSettings} alt='account settings' />
+              <Image src={AccountSettings} alt='' />
               <p className={manropeBold.className}>Account Settings</p>
-            </li>
+            </div>
           </Link>
 
-          <li
+          <div
             style={{
               backgroundColor: '#fff',
               borderRadius: '50%',
@@ -199,11 +203,12 @@ export default function DashboardMobileNav() {
 
               router.push('/sign-in');
             }}
+            className={styles['li']}
           >
             <Image src={SignOut} alt='sign-out' />
             <p className={`text-base ${manropeBold.className}`}>Logout</p>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

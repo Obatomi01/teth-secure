@@ -39,7 +39,7 @@ export default function TopDashboardContainer({
               alignSelf: 'center',
             }}
           />
-          <p className='self-center'>John Olasunkanmi</p>
+          <p className='self-center max-w-40 break-words'>John Olasunkanmi</p>
 
           <div
             style={{
