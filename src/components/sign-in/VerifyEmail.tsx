@@ -5,8 +5,6 @@ import OTPInput from 'react-otp-input';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { getCookie } from 'cookies-next/client';
-
 import { verifyOTPHandler, requestOTPHandler } from '@/app/action';
 
 import styles from '@/styles/signIn.module.scss';
