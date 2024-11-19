@@ -23,7 +23,7 @@ export default function WebhookCodeContainer({
   return (
     <div className={`${styles['webhook--code__container']}`}>
       <FormPopUp showPopUp={showPopUp} message='Code copied' />
-      <h6 className={`${manropeBold.className} mb-2`}>{title}</h6>
+      <p className={`${manropeBold.className} mb-2`}>{title}</p>
       <div className={`${styles['code--container']}`}>
         <pre>
           <code>{content}</code>

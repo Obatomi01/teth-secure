@@ -5,6 +5,8 @@ import OTPInput from 'react-otp-input';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getCookie } from 'cookies-next/client';
+
 import { verifyOTPHandler, requestOTPHandler } from '@/app/action';
 
 import styles from '@/styles/signIn.module.scss';
@@ -17,9 +19,14 @@ type Props = {
   submissionLink:
     | '/get-started/set-up-account'
     | '/reset-password/set-new-password';
+  userEmailAddress: string;
 };
 
-export default function VerifyEmail({ linkTo, submissionLink }: Props) {
+export default function VerifyEmail({
+  linkTo,
+  submissionLink,
+  userEmailAddress,
+}: Props) {
   const [otp, setOtp] = useState<string[]>(Array(6).fill('')); // Initialize OTP as an array
   const otpRef = useRef<(HTMLInputElement | null)[]>([]);
   const router = useRouter();
@@ -94,7 +101,7 @@ export default function VerifyEmail({ linkTo, submissionLink }: Props) {
         Verify your Email
       </h3>
       <p className={`text-base mb-10 ${manropeMedium.className}`}>
-        Enter the six digit OTP sent to Paulthompson968@gmail.com or{' '}
+        Enter the six digit OTP sent to {userEmailAddress} or{' '}
         <span
           className={`text-color-primary ${manropeSemiBold.className} text-base `}
         >

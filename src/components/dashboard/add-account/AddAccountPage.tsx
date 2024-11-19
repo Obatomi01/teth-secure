@@ -17,7 +17,7 @@ export default function AddAccountPage() {
           </h3>
         }
       />
-      <AddAccountForm />
+      <AddAccountForm updateAccount={false} />
     </DashboardContentsContainer>
   );
 }

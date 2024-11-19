@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { setCookie } from 'cookies-next/client';
+
 import SignInCard from '../general/SignInCard';
 
 import { useForm } from 'react-hook-form';
@@ -48,6 +50,11 @@ export default function ReceiveMailForm({
   const [showPopUp, setShowPopUp] = useState(false);
 
   const onSubmit = async (data: FormProps) => {
+    // TODO: set the cookie
+    setCookie('email', data.email, {
+      maxAge: 60 * 60 * 1, // expires in 1 hour
+    });
+
     console.log(data);
     setIsLoading(true);
 

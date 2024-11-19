@@ -17,6 +17,10 @@ import styles from '@/styles/signIn.module.scss';
 import { Option } from '@/components/general/DropDownMenu';
 import FormPopUp from '@/components/general/FormPopUp';
 
+type Props = {
+  updateAccount: boolean; // to check if the form is for updating an account
+};
+
 type AddAccountFormValues = {
   businessName: string;
   businessType: string;
@@ -27,13 +31,27 @@ type AddAccountFormValues = {
   localGovernment: string;
 };
 
-export default function AddAccountForm() {
+export default function AddAccountForm({ updateAccount }: Props) {
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<AddAccountFormValues>();
+  } = useForm<AddAccountFormValues>(
+    updateAccount
+      ? {
+          defaultValues: {
+            businessName: 'Paylony',
+            businessType: 'Crypto',
+            companyName: 'Paylony',
+            websiteUrl: 'https://',
+            logoUrl: 'https://',
+            state: 'Oyo',
+            localGovernment: 'Lagelu',
+          },
+        }
+      : {}
+  );
 
   const [isLoading, setIsLoading] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
@@ -171,6 +189,17 @@ export default function AddAccountForm() {
               {...field}
               options={businessOptions}
               onChange={(value) => field.onChange(value)}
+              placeholder={
+                updateAccount ? (
+                  <p className={`text-base ${manropeMedium.className}`}>
+                    Crypto
+                  </p>
+                ) : (
+                  <p className={`text-base ${manropeMedium.className}`}>
+                    Select Business Type
+                  </p>
+                )
+              }
             />
           )}
         />
@@ -220,6 +249,15 @@ export default function AddAccountForm() {
               {...field}
               options={stateOptions}
               onChange={(value) => field.onChange(value)}
+              placeholder={
+                updateAccount ? (
+                  <p className={`text-base ${manropeMedium.className}`}>Oyo</p>
+                ) : (
+                  <p className={`text-base ${manropeMedium.className}`}>
+                    Select State
+                  </p>
+                )
+              }
             />
           )}
         />
@@ -239,9 +277,15 @@ export default function AddAccountForm() {
               options={localGovernmentOptions}
               onChange={(value) => field.onChange(value)}
               placeholder={
-                <p className={`text-base ${manropeMedium.className}`}>
-                  Select LGA
-                </p>
+                updateAccount ? (
+                  <p className={`text-base ${manropeMedium.className}`}>
+                    Lagelu
+                  </p>
+                ) : (
+                  <p className={`text-base ${manropeMedium.className}`}>
+                    Select LGA
+                  </p>
+                )
               }
             />
           )}
@@ -257,7 +301,9 @@ export default function AddAccountForm() {
       <h4
         className={`text-center xl:text-left text-2xl md:text-xl mb-4 ml-8 ${manropeBold.className}`}
       >
-        Enter Business Information
+        {updateAccount
+          ? 'Update Business Information'
+          : 'Enter Business Information'}
       </h4>
       <FormPopUp message='Data submitted' showPopUp={showPopUp} />
 
@@ -268,7 +314,7 @@ export default function AddAccountForm() {
           ))}
           <BlueBtn
             hasBlueBackground
-            btnText='Add New Business'
+            btnText={updateAccount ? 'Save Changes' : 'Add New Business'}
             btnType='submit'
             isNotLink
             additionalStyles='w-full'
@@ -298,7 +344,7 @@ export default function AddAccountForm() {
           ))}
           <BlueBtn
             hasBlueBackground
-            btnText='Add New Business'
+            btnText={updateAccount ? 'Save Changes' : 'Add New Business'}
             btnType='submit'
             isNotLink
             additionalStyles='w-full'

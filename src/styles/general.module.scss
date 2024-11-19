@@ -388,7 +388,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    ul {
+    .ul {
       // height: 80%;
       display: flex;
       flex-direction: column;
@@ -397,7 +397,7 @@
 
       margin-bottom: vars.$padding-6xl;
 
-      li {
+      .li {
         p {
           font-size: vars.$font-size-16;
           color: #747a80;
@@ -410,7 +410,7 @@
         }
       }
 
-      li,
+      .li,
       .first--level__nav.active {
         display: flex;
         justify-content: space-between;
@@ -444,8 +444,8 @@
 }
 
 .dashboard--mobile__nav__container {
-  ul {
-    li {
+  .ul {
+    .li {
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -462,8 +462,8 @@
       }
     }
 
-    li,
-    li.active {
+    .li,
+    .li.active {
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -472,7 +472,7 @@
       padding-block: vars.$padding-sm;
     }
 
-    li.active {
+    .li.active {
       background-color: #e8e8e8;
 
       img {
@@ -699,8 +699,8 @@
 // ************************************** //
 @media (max-width: 31.25em) {
   .dashboard--mobile__nav__container {
-    ul {
-      li {
+    .ul {
+      .li {
         p {
           width: 87%;
         }

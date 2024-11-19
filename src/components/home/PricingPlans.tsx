@@ -64,7 +64,7 @@ export default function PricingPlans({ isLoggedIn }: Props) {
         />
       ) : (
         <div
-          className={`${btnStyles['blue--border--btn']}
+          className={`flex ${btnStyles['blue--border--btn']}
         `}
         >
           <p className={`text-sm md:text-base ${manropeBold.className}`}>

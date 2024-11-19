@@ -15,6 +15,7 @@ import {
 
 import { pricingOptions } from './CheckOutLeftContainer';
 import PaymentCard from './PaymentCard';
+import CountdownTimer from './CountdownTimer';
 
 export default function BankPayment() {
   const { plan } = useParams();
@@ -47,9 +48,8 @@ export default function BankPayment() {
       <h6 className={`text-3xl ${manropeBold.className} text-center`}>
         7062611406
       </h6>
-      <p className={`text-lg ${manropeLight.className} text-center`}>
-        Expires in 30:00
-      </p>
+
+      <CountdownTimer countdownDuration={1800} />
     </PaymentCard>
   );
 }

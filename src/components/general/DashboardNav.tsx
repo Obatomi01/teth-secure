@@ -152,23 +152,23 @@ function DashboardNav() {
           <div className='pt-6 pb-10 px-6'>
             <Image src={Logo} alt='TethSecure Logo' priority />
           </div>
-          <ul>
+          <div className={styles['ul']}>
             {navOptions.map((option, index) => (
               <Link key={index} href={option.link}>
-                <li
+                <div
                   className={`${
                     basePath === option.link ? styles['active'] : ''
-                  } ${styles['first--level__nav']}`}
+                  } ${styles['first--level__nav']} ${styles.li}`}
                 >
                   <Image
                     src={option.linkIcon}
-                    alt={option.text}
+                    alt=''
                     style={{
                       objectFit: 'contain',
                     }}
                   />
                   <p className={manropeBold.className}>{option.text}</p>
-                </li>
+                </div>
               </Link>
             ))}
             <div
@@ -182,10 +182,10 @@ function DashboardNav() {
                   // Make the selected option active
                 }}
                 placeholder={
-                  <li className={`flex w-full justify-between`}>
+                  <div className={`flex w-full justify-between ${styles.li}`}>
                     <Image
                       src={SetupConfig}
-                      alt='setup configuration'
+                      alt=''
                       className={styles['config--image']}
                     />
                     <p
@@ -193,7 +193,7 @@ function DashboardNav() {
                     >
                       Configuration
                     </p>
-                  </li>
+                  </div>
                 }
                 isANavLink
                 shouldNotSetState
@@ -201,16 +201,16 @@ function DashboardNav() {
             </div>
 
             <Link href={'/account-settings'}>
-              <li
+              <div
                 className={`${
                   basePath === '/account-settings' ? styles['active'] : ''
-                } ${styles['first--level__nav']}`}
+                } ${styles['first--level__nav']} ${styles.li}`}
               >
-                <Image src={AccountSettings} alt='account settings' />
+                <Image src={AccountSettings} alt='' />
                 <p className={manropeBold.className}>Account Settings</p>
-              </li>
+              </div>
             </Link>
-          </ul>
+          </div>
         </div>
       </nav>
 
