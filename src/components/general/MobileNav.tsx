@@ -60,7 +60,7 @@ export default function MobileNav() {
         </div>
 
         <div className='flex flex-col gap-8'>
-          {navLinks.map((navLink, index) => (
+          {/* {navLinks.map((navLink, index) => (
             <Link
               key={index}
               href={navLink.navLink}
@@ -70,7 +70,7 @@ export default function MobileNav() {
                 {navLink.navText}
               </p>
             </Link>
-          ))}
+          ))} */}
           <Link href={'/contact-us'} onClick={() => setIsMenuOpen(false)}>
             <p className={`text-base ${manropeBold.className}`}>Contact us</p>
           </Link>

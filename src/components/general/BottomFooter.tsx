@@ -76,7 +76,7 @@ export default function BottomFooter() {
           </div>
 
           <div className={styles['bottom--footer__content--right']}>
-            <div className={styles['bottom--footer__content--right--top']}>
+            {/* <div className={styles['bottom--footer__content--right--top']}>
               {navLinks.map((el: NavLinkType, index: number) => (
                 <Link href={el.navLink} key={index}>
                   <p
@@ -86,7 +86,7 @@ export default function BottomFooter() {
                   </p>
                 </Link>
               ))}
-            </div>
+            </div> */}
 
             <div className={styles['bottom--footer__content--right--bottom']}>
               {socials.map((el: SocialType, index: number) => (
