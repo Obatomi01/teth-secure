@@ -7,7 +7,7 @@ import Logo from '@/../public/icons/tethsecure.svg';
 import Menu from '@/../public/icons/menu.png';
 import Close from '@/../public/icons/close.png';
 
-import { navLinks } from './BottomFooter';
+// import { navLinks } from './BottomFooter';
 
 import { manropeBold } from '@/styles/fonts';
 import BlueBtn from './BlueBtn';
